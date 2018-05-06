@@ -1,25 +1,26 @@
 import axios from 'axios';
 
 const API_CONFIG = {
-  basePath: 'https://api.openweathermap.org/data/',
-  version: '2.5',
-  apiKey: '3d75d3fd22342bb892e1650a52382b25',
-  units: 'imperial'
+  baseURL: '//api.openweathermap.org/data/2.5',
+  params: {
+    appid: '3d75d3fd22342bb892e1650a52382b25',
+    units: 'imperial'
+  },
+  timeout: 1000
 };
 
 /**
  * Gets the current weather
  * @param {string} query - the query param for making this api request
  */
-const getCurrentWeather = query => {
-  axios
-    .get(
-      `${API_CONFIG.basePath}${API_CONFIG.version}/weather?q=${query}&units=${
-        API_CONFIG.units
-      }&APPID=${API_CONFIG.apiKey}`
-    )
-    .then(response => console.log(response));
-};
+async function getCurrentWeather(query) {
+  try {
+    const response = await axios.get(`/weather?q=${query}`, API_CONFIG);
+    console.log(typeof response);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export default getCurrentWeather;
 
