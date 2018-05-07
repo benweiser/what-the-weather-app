@@ -1,0 +1,49 @@
+import axios from 'axios';
+
+async function getCurrentWeather(query) {
+  try {
+    const response = await axios.get(`/weather?q=${query}`, API_CONFIG);
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const uuid =
+  Math.random()
+    .toString(36)
+    .substring(2, 15) +
+  Math.random()
+    .toString(36)
+    .substring(2, 15);
+
+// Note in a production app we'd need something more robust, redux-persist with localforage is a nice option
+
+/**
+ * Gets data from session storage or makes a new ajax request if data isn't found in
+ * storage to ensure we're not making extraneous calls
+ *
+ * @param {string} query - The query string for our request
+ * @param {object} config - An axios configuration object
+ * @param {string} storageId - A unique identifier for session storage data
+ */
+const getCached = (query, config, storageId) => {
+  const uniqueIdentifier = storageId ? storageId + uuid : uuid;
+  if (sessionStorage.getItem(uniqueIdentifier) === null) {
+    return async () => {
+      try {
+        const { data } = await axios.get(query, config);
+        sessionStorage.setItem(uniqueIdentifier, JSON.stringify(data));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  }
+  console.log(
+    'this is session storage',
+    sessionStorage.getItem(JSON.parse(storageId))
+  );
+  return sessionStorage.getItem(JSON.parse(storageId));
+};
+
+export default getCached;

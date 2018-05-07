@@ -1,4 +1,4 @@
-import getCachedAjax from './GetCached';
+import getCached from './GetCached';
 
 const API_CONFIG = {
   baseURL: '//api.openweathermap.org/data/2.5',
@@ -23,6 +23,6 @@ const API_CONFIG = {
 } */
 
 const getWeather = query =>
-  getCachedAjax(`/weather?q=${query}`, API_CONFIG, 'weather');
+  getCached(`/weather?q=${query}`, API_CONFIG, 'weather');
 
 export default getWeather;

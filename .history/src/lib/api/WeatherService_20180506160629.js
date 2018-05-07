@@ -1,4 +1,4 @@
-import getCachedAjax from './GetCached';
+import axios from 'axios';
 
 const API_CONFIG = {
   baseURL: '//api.openweathermap.org/data/2.5',
@@ -13,16 +13,15 @@ const API_CONFIG = {
  * Gets the current weather
  * @param {string} query - the query param for making this api request
  */
-/* async function getCurrentWeather(query) {
+async function getCurrentWeather(query) {
   try {
     const response = await axios.get(`/weather?q=${query}`, API_CONFIG);
     console.log(response.data);
   } catch (error) {
     console.error(error);
   }
-} */
+}
 
-const getWeather = query =>
-  getCachedAjax(`/weather?q=${query}`, API_CONFIG, 'weather');
+export default getCurrentWeather;
 
-export default getWeather;
+console.log(getCurrentWeather('London'));

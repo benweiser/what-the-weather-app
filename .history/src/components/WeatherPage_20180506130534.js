@@ -1,18 +1,15 @@
 import React from 'react';
-import getWeather from '../lib/api/WeatherService';
-import WeatherWidget from './WeatherWidget';
+import getCurrentWeather from '../lib/api/WeatherService';
 
 class WeatherPage extends React.Component {
   componentDidMount() {
-    getWeather('Las Vegas');
-    // console.log('get weather', getWeather('Las Vegas'));
+    getCurrentWeather('Las Vegas');
   }
 
   render() {
     return (
       <div>
         <h1>Hello there!</h1>
-        <WeatherWidget />
       </div>
     );
   }

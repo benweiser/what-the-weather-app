@@ -5,7 +5,7 @@ import WeatherWidget from './WeatherWidget';
 class WeatherPage extends React.Component {
   componentDidMount() {
     getWeather('Las Vegas');
-    // console.log('get weather', getWeather('Las Vegas'));
+    console.log('get weather', getWeather('Las Vegas'));
   }
 
   render() {
