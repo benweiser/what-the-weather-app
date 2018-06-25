@@ -1,10 +1,11 @@
-import getCachedAjax from './GetCached';
+import getCachedAjax from "./request";
+import apiKey from "../../apiKey";
 
 export const API_CONFIG = {
-  baseURL: '//api.openweathermap.org/data/2.5',
+  baseURL: "//api.openweathermap.org/data/2.5",
   params: {
-    appid: '3d75d3fd22342bb892e1650a52382b25',
-    units: 'imperial'
+    appid: apiKey,
+    units: "imperial"
   },
   timeout: 1000
 };
@@ -23,6 +24,10 @@ export const API_CONFIG = {
 } */
 
 const getWeather = query =>
-  getCachedAjax(`/weather?q=${query}`, API_CONFIG, 'weather');
+  getCachedAjax(`/weather?q=${query}`, API_CONFIG, "weather");
 
-export default getWeather;
+const API = {
+  getWeather
+};
+
+export default API;

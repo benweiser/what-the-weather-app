@@ -1,15 +1,20 @@
 import React from "react";
-import getWeather from "../lib/api/WeatherService";
+import API from "../services/api/WeatherService";
 import WeatherWidget from "./WeatherWidget";
 
 class WeatherPage extends React.Component {
+  state = {
+    data: {}
+  };
   fetchWeather = location => {
-    this.setState({
-      data: getWeather(location)
-    });
+    console.log("test", API.getWeather(location));
+    /*     API.getWeather(location).then(locationData => {
+      return this.setState({ data: locationData });
+    }); */
   };
 
   render() {
+    console.log(this.state.data);
     return <WeatherWidget fetchWeather={this.fetchWeather} />;
   }
 }

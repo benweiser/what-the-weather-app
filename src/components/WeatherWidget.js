@@ -16,8 +16,12 @@ class WeatherWidget extends React.PureComponent {
   handleSubmit = e => {
     this.props.fetchWeather(this.state.zipCode);
     e.preventDefault();
+    console.log("this state", this.state);
   };
+
   render() {
+    console.log("this props", this.props);
+    console.log("this state", this.state);
     return (
       <form onSubmit={this.handleSubmit}>
         <Input

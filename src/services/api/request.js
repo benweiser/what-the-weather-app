@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
 
 // Note in a production app we'd need something more robust, redux-persist with localforage is a nice option
 
 const EXPIRE_TIME = 600000; // 10 minutes
-const SESSION_PREFIX = 'bw';
+const SESSION_PREFIX = "bw";
 
 /**
  *
@@ -32,7 +32,7 @@ async function getRequest(query, config, storeInSession, storageId) {
       sessionStorage.setItem(storageId, JSON.stringify(response));
     }
   } catch (error) {
-    console.error('error', error);
+    console.error("error", error);
   }
 }
 
@@ -45,7 +45,6 @@ async function getRequest(query, config, storeInSession, storageId) {
  * @param {string} storageId - A unique storage id
  */
 const getCachedAjax = (query, config, storageId) => {
-  console.log('get cached ajax called');
   const identifier = `${SESSION_PREFIX}.${storageId}`;
   const sessionState = sessionStorage.getItem(identifier);
   const storedResponse = JSON.parse(sessionState);
