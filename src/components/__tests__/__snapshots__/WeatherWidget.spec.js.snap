@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weather Widget Snapshot renders 1`] = `
+<div>
+  <input
+    aria-label="Enter city name"
+    className="Input"
+    placeholder="Enter city name"
+  />
+  <button
+    className="Button"
+    onClick={[Function]}
+  >
+    Submit Data
+  </button>
+</div>
+`;

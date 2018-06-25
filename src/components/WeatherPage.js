@@ -1,20 +1,16 @@
-import React from 'react';
-import getWeather from '../lib/api/WeatherService';
-import WeatherWidget from './WeatherWidget';
+import React from "react";
+import getWeather from "../lib/api/WeatherService";
+import WeatherWidget from "./WeatherWidget";
 
 class WeatherPage extends React.Component {
-  componentDidMount() {
-    getWeather('Las Vegas');
-    // console.log('get weather', getWeather('Las Vegas'));
-  }
+  fetchWeather = location => {
+    this.setState({
+      data: getWeather(location)
+    });
+  };
 
   render() {
-    return (
-      <div>
-        <h1>Hello there!</h1>
-        <WeatherWidget />
-      </div>
-    );
+    return <WeatherWidget fetchWeather={this.fetchWeather} />;
   }
 }
 

@@ -1,6 +1,6 @@
 import getCachedAjax from './GetCached';
 
-const API_CONFIG = {
+export const API_CONFIG = {
   baseURL: '//api.openweathermap.org/data/2.5',
   params: {
     appid: '3d75d3fd22342bb892e1650a52382b25',
