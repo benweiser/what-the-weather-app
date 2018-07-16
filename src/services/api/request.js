@@ -10,31 +10,28 @@ const SESSION_PREFIX = "bw";
  * @param {number} expireTime - The number of milliseconds to cache the response in sessionStorage
  * @param {object} response - A cached response to grab a timestamp from
  */
-const isExpired = (expireTime, response) =>
+export const isExpired = (expireTime, response) =>
   new Date().getTime() - response.timestamp > expireTime;
+
 /**
  *
  * @param {string} query - The query string for our request
  * @param {object} config - A configuration object for our ajax request
- * @param {boolean} storeInSession - Whether or not to store this response in sessionStorage
- * @param {string} storageId - If storeInSession is true here we can set an id
  */
-async function getRequest(query, config, storeInSession, storageId) {
+export const getAjax = async (query, config) => {
+  console.log("this fired!");
   try {
     const { data } = await axios.get(query, config);
-    // We could pass our data through an obj constructor to model if necssary
     const response = {
       data,
       query,
       timestamp: new Date().getTime()
     };
-    if (storeInSession && storageId) {
-      sessionStorage.setItem(storageId, JSON.stringify(response));
-    }
+    return response;
   } catch (error) {
     console.error("error", error);
   }
-}
+};
 
 /**
  * Gets data from session storage or makes a new ajax request if data isn't found in
@@ -44,19 +41,24 @@ async function getRequest(query, config, storeInSession, storageId) {
  * @param {object} config - An axios configuration object
  * @param {string} storageId - A unique storage id
  */
-const getCachedAjax = (query, config, storageId) => {
-  const identifier = `${SESSION_PREFIX}.${storageId}`;
-  const sessionState = sessionStorage.getItem(identifier);
-  const storedResponse = JSON.parse(sessionState);
-  if (
-    sessionState === null ||
-    (storedResponse.query !== query && storedResponse !== undefined)
-  ) {
-    return getRequest(query, config, true, identifier);
+export const getCachedAjax = (query, config, storageId) => {
+  const cacheId = `${SESSION_PREFIX}.${storageId}`;
+  const cachedResponse = sessionStorage.getItem(cacheId);
+  console.log("the cached response", cachedResponse);
+  if (cachedResponse) {
+    const response = JSON.parse(cachedResponse);
+    if (
+      cachedResponse &&
+      response.query === query &&
+      !isExpired(EXPIRE_TIME, response)
+    ) {
+      return response;
+    }
   }
-  return isExpired(EXPIRE_TIME, storedResponse)
-    ? getRequest(query, config, true, identifier)
-    : storedResponse;
+  return getAjax(query, config).then(response => {
+    console.log("this response", response);
+    sessionStorage.setItem(cacheId, JSON.stringify(response));
+    console.log("getting item", sessionStorage.getItem(cacheId));
+    return response;
+  });
 };
-
-export default getCachedAjax;
