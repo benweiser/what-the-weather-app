@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weather Stats renders 1`] = `
+<div>
+  <h3
+    className="MuiTypography-root-1 MuiTypography-headline-6 MuiTypography-gutterBottom-18"
+  >
+    City: 
+    Test
+  </h3>
+  <span
+    className="wi wi-day-rain css-tez4ss"
+    size="xl"
+  />
+  <p>
+    Latitude: 
+    23
+    , Longitude: 
+    32
+  </p>
+  <p>
+    Current Temperature: 
+    45
+  </p>
+  <p>
+    Today's Low: 
+    23
+  </p>
+  <p>
+    Today's High: 
+    79
+  </p>
+  <p>
+    Current Humidity: 
+    40
+  </p>
+  <p>
+    Current Conditions: 
+    Test description
+  </p>
+  <p>
+    Sunset Time: 
+    8:00
+  </p>
+  <p>
+    Sunrise Time: 
+    5:00
+  </p>
+  <p>
+    Wind Speed: 
+    43
+  </p>
+  <p>
+    Wind Degree: 
+    43
+  </p>
+</div>
+`;

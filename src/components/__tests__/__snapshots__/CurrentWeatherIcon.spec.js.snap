@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Current Weather Icon renders 1`] = `
+<span
+  className="wi undefined css-tez4ss"
+  size="xl"
+/>
+`;

@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 import Icon from "./Icon";
 
 const weather = {
@@ -29,3 +30,7 @@ const CurrentWeatherIcon = ({ currentConditions }) => {
 };
 
 export default CurrentWeatherIcon;
+
+CurrentWeatherIcon.propTypes = {
+  name: PropTypes.number.isRequired
+};

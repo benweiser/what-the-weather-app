@@ -1,4 +1,5 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 import "../styles/icons/weather-icons.min.css";
 import styled, { css } from "react-emotion";
 
@@ -13,8 +14,12 @@ const StyledIcon = styled("span")`
   font-size: ${props => iconSizes[props.size] || props.size};
 `;
 
-const Icon = props => {
-  return <StyledIcon className={`wi ${props.name}`} {...props} />;
+const Icon = ({ name, ...props }) => {
+  return <StyledIcon className={`wi ${name}`} {...props} />;
 };
 
 export default Icon;
+
+StyledIcon.propTypes = {
+  size: PropTypes.string.isRequired
+};

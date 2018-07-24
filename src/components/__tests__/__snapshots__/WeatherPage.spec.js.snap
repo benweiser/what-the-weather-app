@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weather Page Component renders 1`] = `
+<div
+  className="css-1f77bxc"
+>
+  <div
+    className="MuiPaper-root-1 MuiPaper-elevation1-4 MuiPaper-rounded-2 css-12128pa"
+  >
+    <div
+      className="css-jtawwa"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <div
+          aria-describedby={undefined}
+          aria-label="Enter city name"
+          className="MuiFormControl-root-28 css-e8diyq"
+        >
+          <label
+            className="MuiFormLabel-root-37 MuiInputLabel-root-32 MuiInputLabel-formControl-33 MuiInputLabel-animated-36"
+            data-shrink={false}
+            htmlFor={undefined}
+          >
+            Enter city name
+          </label>
+          <div
+            className="MuiInput-root-42 MuiInput-formControl-43 MuiInput-underline-46"
+          >
+            <input
+              aria-invalid={false}
+              aria-required={false}
+              autoComplete={undefined}
+              autoFocus={undefined}
+              className="MuiInput-input-50"
+              defaultValue={undefined}
+              disabled={false}
+              id={undefined}
+              name={undefined}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              onKeyDown={undefined}
+              onKeyUp={undefined}
+              placeholder="Enter city name"
+              readOnly={undefined}
+              required={undefined}
+              rows={undefined}
+              type="text"
+              value={undefined}
+            />
+          </div>
+        </div>
+        <button
+          className="MuiButtonBase-root-79 MuiButton-root-55 MuiButton-contained-64 MuiButton-containedPrimary-65 MuiButton-raised-67 MuiButton-raisedPrimary-68"
+          disabled={false}
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex="0"
+          type="submit"
+        >
+          <span
+            className="MuiButton-label-56"
+          >
+            Submit Data
+          </span>
+          <span
+            className="MuiTouchRipple-root-82"
+          />
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;

@@ -66,12 +66,6 @@ position: relative;
 .sk-circle12:before {
           animation-delay: -0.1s; }
 
-@-webkit-keyframes sk-circleBounceDelay {
-0%, 80%, 100% {
-          transform: scale(0); }
-40% {
-          transform: scale(1); } }
-
 @keyframes sk-circleBounceDelay {
 0%, 80%, 100% {
           transform: scale(0); }

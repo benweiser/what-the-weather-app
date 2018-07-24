@@ -5,9 +5,12 @@ import { css } from "emotion";
 import CurrentWeatherIcon from "./CurrentWeatherIcon";
 
 const WeatherStats = ({ data }) => {
+  if (!data) {
+    return null;
+  }
   return (
     <div>
-      <Typography variant="headline" component="h3">
+      <Typography variant="headline" component="h3" gutterBottom>
         City: {data.name}
       </Typography>
       <CurrentWeatherIcon currentConditions={data.weather[0].id} />

@@ -4,7 +4,7 @@ import apiKey from "../../../apiKey";
 
 describe("API", () => {
   beforeEach(() => {
-    //  sessionStorage.clear();
+    jest.clearAllMocks();
   });
 
   it("should create a namespaced object for the API call", () => {

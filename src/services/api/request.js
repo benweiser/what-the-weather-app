@@ -19,7 +19,6 @@ export const isExpired = (expireTime, response) =>
  * @param {object} config - A configuration object for our ajax request
  */
 export const getAjax = async (query, config) => {
-  console.log("this fired!");
   try {
     const { data } = await axios.get(query, config);
     const response = {
@@ -43,8 +42,9 @@ export const getAjax = async (query, config) => {
  */
 export const getCachedAjax = (query, config, storageId) => {
   const cacheId = `${SESSION_PREFIX}.${storageId}`;
+
   const cachedResponse = sessionStorage.getItem(cacheId);
-  console.log("the cached response", cachedResponse);
+
   if (cachedResponse) {
     const response = JSON.parse(cachedResponse);
     if (
@@ -56,9 +56,7 @@ export const getCachedAjax = (query, config, storageId) => {
     }
   }
   return getAjax(query, config).then(response => {
-    console.log("this response", response);
     sessionStorage.setItem(cacheId, JSON.stringify(response));
-    console.log("getting item", sessionStorage.getItem(cacheId));
     return response;
   });
 };
