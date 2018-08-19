@@ -1,4 +1,4 @@
-import { getAjax, getCachedAjax } from "./request";
+import { getCachedAjax } from "./request";
 import apiKey from "../../apiKey";
 
 export const API_CONFIG = {

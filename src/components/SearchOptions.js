@@ -15,17 +15,8 @@ class SearchOptions extends React.PureComponent {
   handleChange = e => {
     e.preventDefault();
     this.setState({ value: e.target.value }, () => {
-      console.log("SearchOptions this state value", this.state.value);
       return this.props.onSearchTypeSelect(this.state.value);
     });
-
-    /*     this.setState((prevState, props) => {
-      console.log("prev state", prevState);
-      console.log("props", props);
-    }); */
-
-    //   console.log("this is the radio event target value", e.target.value);
-    //   console.log("this is the radio state value", this.state.value);
   };
 
   render() {

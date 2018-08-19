@@ -3,7 +3,6 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import WeatherPage from "./components/WeatherPage";
-import Icon from "./components/Icon";
 
 const App = () => (
   <div className="App">

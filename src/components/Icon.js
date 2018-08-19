@@ -1,7 +1,7 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import "../styles/icons/weather-icons.min.css";
-import styled, { css } from "react-emotion";
+import styled from "react-emotion";
 
 const iconSizes = {
   sm: "24px",

@@ -26,7 +26,7 @@ class WeatherPage extends React.PureComponent {
     fetching: false
   };
 
-  fetchWeather = location => {
+  onFetchWeather = location => {
     this.setState({ fetching: true });
     API.getWeatherByZipCode(location)
       .then(res => {
@@ -48,7 +48,7 @@ class WeatherPage extends React.PureComponent {
         <Paper elevation={1} className={StyledWeatherStats}>
           <WeatherSearch
             className={StyledWeatherSearch}
-            fetchWeather={this.fetchWeather}
+            onFetchWeather={this.onFetchWeather}
           />
           {weatherData.main && <WeatherStats data={weatherData} />}
         </Paper>

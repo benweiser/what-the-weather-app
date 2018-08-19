@@ -1,6 +1,5 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import { css } from "emotion";
 
 import CurrentWeatherIcon from "./CurrentWeatherIcon";
 

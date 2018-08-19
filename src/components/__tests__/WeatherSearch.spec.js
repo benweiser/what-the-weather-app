@@ -5,7 +5,7 @@ import WeatherSearch from "../WeatherSearch";
 describe("Weather Widget Snapshot", () => {
   test("renders", () => {
     const component = renderer.create(
-      <WeatherSearch fetchWeather={jest.fn()} />
+      <WeatherSearch onFetchWeather={jest.fn()} />
     );
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();

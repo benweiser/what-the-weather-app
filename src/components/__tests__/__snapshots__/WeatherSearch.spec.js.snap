@@ -8,26 +8,194 @@ exports[`Weather Widget Snapshot renders 1`] = `
     onSubmit={[Function]}
   >
     <div
-      aria-describedby={undefined}
-      aria-label="Enter city name"
-      className="MuiFormControl-root-1 css-e8diyq"
+      aria-label="Select zip, coordinates, or location to search"
+      className="MuiFormGroup-root-1 css-9ur1b"
+      role="radiogroup"
     >
       <label
-        className="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+        className="MuiFormControlLabel-root-3"
+      >
+        <span
+          className="MuiButtonBase-root-21 MuiIconButton-root-15 MuiSwitchBase-root-11 MuiRadio-root-6 MuiRadio-colorSecondary-10 MuiSwitchBase-checked-12 MuiRadio-checked-7"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role={undefined}
+          tabIndex={null}
+        >
+          <span
+            className="MuiIconButton-label-20"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root-24"
+              color={undefined}
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+              />
+            </svg>
+            <input
+              checked={true}
+              className="MuiSwitchBase-input-14"
+              disabled={undefined}
+              id={undefined}
+              name="searchby"
+              onChange={[Function]}
+              tabIndex={undefined}
+              type="radio"
+              value="city"
+            />
+          </span>
+          <span
+            className="MuiTouchRipple-root-30"
+          />
+        </span>
+        <span
+          className="MuiTypography-root-37 MuiTypography-body1-46 MuiFormControlLabel-label-5"
+        >
+          By City
+        </span>
+      </label>
+      <label
+        className="MuiFormControlLabel-root-3"
+      >
+        <span
+          className="MuiButtonBase-root-21 MuiIconButton-root-15 MuiSwitchBase-root-11 MuiRadio-root-6 MuiRadio-colorSecondary-10"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role={undefined}
+          tabIndex={null}
+        >
+          <span
+            className="MuiIconButton-label-20"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root-24"
+              color={undefined}
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+              />
+            </svg>
+            <input
+              checked={false}
+              className="MuiSwitchBase-input-14"
+              disabled={undefined}
+              id={undefined}
+              name="searchby"
+              onChange={[Function]}
+              tabIndex={undefined}
+              type="radio"
+              value="coords"
+            />
+          </span>
+          <span
+            className="MuiTouchRipple-root-30"
+          />
+        </span>
+        <span
+          className="MuiTypography-root-37 MuiTypography-body1-46 MuiFormControlLabel-label-5"
+        >
+          By Latitude/Longitude
+        </span>
+      </label>
+      <label
+        className="MuiFormControlLabel-root-3"
+      >
+        <span
+          className="MuiButtonBase-root-21 MuiIconButton-root-15 MuiSwitchBase-root-11 MuiRadio-root-6 MuiRadio-colorSecondary-10"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          role={undefined}
+          tabIndex={null}
+        >
+          <span
+            className="MuiIconButton-label-20"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root-24"
+              color={undefined}
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+              />
+            </svg>
+            <input
+              checked={false}
+              className="MuiSwitchBase-input-14"
+              disabled={undefined}
+              id={undefined}
+              name="searchby"
+              onChange={[Function]}
+              tabIndex={undefined}
+              type="radio"
+              value="zip"
+            />
+          </span>
+          <span
+            className="MuiTouchRipple-root-30"
+          />
+        </span>
+        <span
+          className="MuiTypography-root-37 MuiTypography-body1-46 MuiFormControlLabel-label-5"
+        >
+          By Zip Code
+        </span>
+      </label>
+    </div>
+    <div
+      aria-describedby={undefined}
+      aria-label="Enter city name"
+      className="MuiFormControl-root-61 css-e8diyq"
+    >
+      <label
+        className="MuiFormLabel-root-70 MuiInputLabel-root-65 MuiInputLabel-formControl-66 MuiInputLabel-animated-69"
         data-shrink={false}
         htmlFor={undefined}
       >
         Enter city name
       </label>
       <div
-        className="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+        className="MuiInput-root-75 MuiInput-formControl-76 MuiInput-underline-79"
       >
         <input
           aria-invalid={false}
           aria-required={false}
           autoComplete={undefined}
           autoFocus={undefined}
-          className="MuiInput-input-23"
+          className="MuiInput-input-83"
           defaultValue={undefined}
           disabled={false}
           id={undefined}
@@ -47,7 +215,7 @@ exports[`Weather Widget Snapshot renders 1`] = `
       </div>
     </div>
     <button
-      className="MuiButtonBase-root-52 MuiButton-root-28 MuiButton-contained-37 MuiButton-containedPrimary-38 MuiButton-raised-40 MuiButton-raisedPrimary-41"
+      className="MuiButtonBase-root-21 MuiButton-root-88 MuiButton-contained-97 MuiButton-containedPrimary-98 MuiButton-raised-100 MuiButton-raisedPrimary-101"
       disabled={false}
       onBlur={[Function]}
       onFocus={[Function]}
@@ -63,12 +231,12 @@ exports[`Weather Widget Snapshot renders 1`] = `
       type="submit"
     >
       <span
-        className="MuiButton-label-29"
+        className="MuiButton-label-89"
       >
-        Submit Data
+        Get Weather
       </span>
       <span
-        className="MuiTouchRipple-root-55"
+        className="MuiTouchRipple-root-30"
       />
     </button>
   </form>
