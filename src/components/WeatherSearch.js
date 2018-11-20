@@ -9,27 +9,26 @@ const StyledTextField = css`
   width: 380px;
 `;
 
-class WeatherSearch extends React.PureComponent {
+class WeatherSearch extends React.Component {
   state = {
     searchMethod: "city",
-    zipCode: ""
+    value: ""
   };
 
   handleChange = e => {
-    this.setState({ zipCode: e.target.value });
+    this.setState({ value: e.target.value });
     e.preventDefault();
   };
 
   handleSubmit = e => {
     if (this.props.onFetchWeather) {
-      this.props.onFetchWeather(this.state.zipCode);
-      this.setState({ zipCode: "" });
+      this.props.onFetchWeather(this.state);
     }
     e.preventDefault();
   };
 
   onSearchTypeSelect = type => {
-    this.setState({ searchMethod: type }, () => {});
+    this.setState({ searchMethod: type });
   };
 
   renderInputFieldByType = () => {
@@ -79,9 +78,11 @@ class WeatherSearch extends React.PureComponent {
     return (
       <div className={this.props.className}>
         <form onSubmit={this.handleSubmit}>
-          <SearchOptions onSearchTypeSelect={this.onSearchTypeSelect} />
+          <SearchOptions
+            onSearchTypeSelect={this.onSearchTypeSelect}
+            selectedOption={this.state.searchMethod}
+          />
           {this.renderInputFieldByType()}
-
           <Button color="primary" variant="contained" type="submit">
             Get Weather
           </Button>

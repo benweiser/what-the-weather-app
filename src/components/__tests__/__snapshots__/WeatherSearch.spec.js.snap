@@ -9,14 +9,14 @@ exports[`Weather Widget Snapshot renders 1`] = `
   >
     <div
       aria-label="Select zip, coordinates, or location to search"
-      className="MuiFormGroup-root-1 css-9ur1b"
+      className="MuiFormGroup-root-1 css-xbtlj5"
       role="radiogroup"
     >
       <label
         className="MuiFormControlLabel-root-3"
       >
         <span
-          className="MuiButtonBase-root-21 MuiIconButton-root-15 MuiSwitchBase-root-11 MuiRadio-root-6 MuiRadio-colorSecondary-10 MuiSwitchBase-checked-12 MuiRadio-checked-7"
+          className="MuiButtonBase-root-22 MuiIconButton-root-16 MuiSwitchBase-root-12 MuiRadio-root-7 MuiRadio-colorSecondary-11 MuiSwitchBase-checked-13 MuiRadio-checked-8"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -31,11 +31,11 @@ exports[`Weather Widget Snapshot renders 1`] = `
           tabIndex={null}
         >
           <span
-            className="MuiIconButton-label-20"
+            className="MuiIconButton-label-21"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-24"
+              className="MuiSvgIcon-root-25"
               color={undefined}
               focusable="false"
               viewBox="0 0 24 24"
@@ -45,23 +45,26 @@ exports[`Weather Widget Snapshot renders 1`] = `
               />
             </svg>
             <input
+              autoFocus={undefined}
               checked={true}
-              className="MuiSwitchBase-input-14"
+              className="MuiSwitchBase-input-15"
               disabled={undefined}
               id={undefined}
               name="searchby"
               onChange={[Function]}
+              readOnly={undefined}
+              required={undefined}
               tabIndex={undefined}
               type="radio"
               value="city"
             />
           </span>
           <span
-            className="MuiTouchRipple-root-30"
+            className="MuiTouchRipple-root-32"
           />
         </span>
         <span
-          className="MuiTypography-root-37 MuiTypography-body1-46 MuiFormControlLabel-label-5"
+          className="MuiTypography-root-39 MuiTypography-body1-48 MuiFormControlLabel-label-6"
         >
           By City
         </span>
@@ -70,7 +73,7 @@ exports[`Weather Widget Snapshot renders 1`] = `
         className="MuiFormControlLabel-root-3"
       >
         <span
-          className="MuiButtonBase-root-21 MuiIconButton-root-15 MuiSwitchBase-root-11 MuiRadio-root-6 MuiRadio-colorSecondary-10"
+          className="MuiButtonBase-root-22 MuiIconButton-root-16 MuiSwitchBase-root-12 MuiRadio-root-7 MuiRadio-colorSecondary-11"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -85,11 +88,11 @@ exports[`Weather Widget Snapshot renders 1`] = `
           tabIndex={null}
         >
           <span
-            className="MuiIconButton-label-20"
+            className="MuiIconButton-label-21"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-24"
+              className="MuiSvgIcon-root-25"
               color={undefined}
               focusable="false"
               viewBox="0 0 24 24"
@@ -99,23 +102,26 @@ exports[`Weather Widget Snapshot renders 1`] = `
               />
             </svg>
             <input
+              autoFocus={undefined}
               checked={false}
-              className="MuiSwitchBase-input-14"
+              className="MuiSwitchBase-input-15"
               disabled={undefined}
               id={undefined}
               name="searchby"
               onChange={[Function]}
+              readOnly={undefined}
+              required={undefined}
               tabIndex={undefined}
               type="radio"
               value="coords"
             />
           </span>
           <span
-            className="MuiTouchRipple-root-30"
+            className="MuiTouchRipple-root-32"
           />
         </span>
         <span
-          className="MuiTypography-root-37 MuiTypography-body1-46 MuiFormControlLabel-label-5"
+          className="MuiTypography-root-39 MuiTypography-body1-48 MuiFormControlLabel-label-6"
         >
           By Latitude/Longitude
         </span>
@@ -124,7 +130,7 @@ exports[`Weather Widget Snapshot renders 1`] = `
         className="MuiFormControlLabel-root-3"
       >
         <span
-          className="MuiButtonBase-root-21 MuiIconButton-root-15 MuiSwitchBase-root-11 MuiRadio-root-6 MuiRadio-colorSecondary-10"
+          className="MuiButtonBase-root-22 MuiIconButton-root-16 MuiSwitchBase-root-12 MuiRadio-root-7 MuiRadio-colorSecondary-11"
           onBlur={[Function]}
           onFocus={[Function]}
           onKeyDown={[Function]}
@@ -139,11 +145,11 @@ exports[`Weather Widget Snapshot renders 1`] = `
           tabIndex={null}
         >
           <span
-            className="MuiIconButton-label-20"
+            className="MuiIconButton-label-21"
           >
             <svg
               aria-hidden="true"
-              className="MuiSvgIcon-root-24"
+              className="MuiSvgIcon-root-25"
               color={undefined}
               focusable="false"
               viewBox="0 0 24 24"
@@ -153,23 +159,26 @@ exports[`Weather Widget Snapshot renders 1`] = `
               />
             </svg>
             <input
+              autoFocus={undefined}
               checked={false}
-              className="MuiSwitchBase-input-14"
+              className="MuiSwitchBase-input-15"
               disabled={undefined}
               id={undefined}
               name="searchby"
               onChange={[Function]}
+              readOnly={undefined}
+              required={undefined}
               tabIndex={undefined}
               type="radio"
               value="zip"
             />
           </span>
           <span
-            className="MuiTouchRipple-root-30"
+            className="MuiTouchRipple-root-32"
           />
         </span>
         <span
-          className="MuiTypography-root-37 MuiTypography-body1-46 MuiFormControlLabel-label-5"
+          className="MuiTypography-root-39 MuiTypography-body1-48 MuiFormControlLabel-label-6"
         >
           By Zip Code
         </span>
@@ -178,24 +187,23 @@ exports[`Weather Widget Snapshot renders 1`] = `
     <div
       aria-describedby={undefined}
       aria-label="Enter city name"
-      className="MuiFormControl-root-61 css-e8diyq"
+      className="MuiFormControl-root-64 css-e8diyq"
     >
       <label
-        className="MuiFormLabel-root-70 MuiInputLabel-root-65 MuiInputLabel-formControl-66 MuiInputLabel-animated-69"
+        className="MuiFormLabel-root-73 MuiInputLabel-root-68 MuiInputLabel-formControl-69 MuiInputLabel-animated-72"
         data-shrink={false}
         htmlFor={undefined}
       >
         Enter city name
       </label>
       <div
-        className="MuiInput-root-75 MuiInput-formControl-76 MuiInput-underline-79"
+        className="MuiInput-root-80 MuiInput-formControl-81 MuiInput-underline-84"
       >
         <input
           aria-invalid={false}
-          aria-required={false}
           autoComplete={undefined}
           autoFocus={undefined}
-          className="MuiInput-input-83"
+          className="MuiInput-input-88"
           defaultValue={undefined}
           disabled={false}
           id={undefined}
@@ -207,15 +215,15 @@ exports[`Weather Widget Snapshot renders 1`] = `
           onKeyUp={undefined}
           placeholder="Enter city name"
           readOnly={undefined}
-          required={undefined}
+          required={false}
           rows={undefined}
           type="text"
-          value={undefined}
+          value=""
         />
       </div>
     </div>
     <button
-      className="MuiButtonBase-root-21 MuiButton-root-88 MuiButton-contained-97 MuiButton-containedPrimary-98 MuiButton-raised-100 MuiButton-raisedPrimary-101"
+      className="MuiButtonBase-root-22 MuiButton-root-93 MuiButton-contained-104 MuiButton-containedPrimary-105 MuiButton-raised-107 MuiButton-raisedPrimary-108"
       disabled={false}
       onBlur={[Function]}
       onFocus={[Function]}
@@ -231,12 +239,12 @@ exports[`Weather Widget Snapshot renders 1`] = `
       type="submit"
     >
       <span
-        className="MuiButton-label-89"
+        className="MuiButton-label-94"
       >
         Get Weather
       </span>
       <span
-        className="MuiTouchRipple-root-30"
+        className="MuiTouchRipple-root-32"
       />
     </button>
   </form>

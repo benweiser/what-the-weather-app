@@ -20,17 +20,31 @@ const StyledWeatherSearch = css`
   margin-bottom: 32px;
 `;
 
-class WeatherPage extends React.PureComponent {
+const weatherMap = location => {
+  const searchType = {
+    city: value => API.getWeatherByCity(value),
+    coords: value => API.getWeatherByCoords(value),
+    zip: value => API.getWeatherByZipCode(value)
+  };
+  return searchType[location.searchMethod](location.value);
+};
+
+class WeatherPage extends React.Component {
   state = {
     data: {},
     fetching: false
   };
 
   onFetchWeather = location => {
+    console.log("location", location);
     this.setState({ fetching: true });
-    API.getWeatherByZipCode(location)
+    weatherMap(location)
       .then(res => {
-        return this.setState({ data: res.data, fetching: false });
+        return this.setState({
+          data: res.data,
+          fetching: false,
+          searchMethod: location.searchMethod
+        });
       })
       .catch(e => {
         console.log("error", e);
@@ -40,17 +54,19 @@ class WeatherPage extends React.PureComponent {
 
   render() {
     const weatherData = this.state.data;
-    if (this.state.fetching) {
-      return <Loader />;
-    }
     return (
       <div className={StyledWeatherSearchWrapper}>
         <Paper elevation={1} className={StyledWeatherStats}>
           <WeatherSearch
             className={StyledWeatherSearch}
             onFetchWeather={this.onFetchWeather}
+            searchMethod={this.state.searchMethod}
           />
-          {weatherData.main && <WeatherStats data={weatherData} />}
+          {this.state.fetching ? (
+            <Loader />
+          ) : (
+            weatherData.main && <WeatherStats data={weatherData} />
+          )}
         </Paper>
       </div>
     );

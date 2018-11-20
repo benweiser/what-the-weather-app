@@ -15,14 +15,14 @@ exports[`Weather Page Component renders 1`] = `
       >
         <div
           aria-label="Select zip, coordinates, or location to search"
-          className="MuiFormGroup-root-28 css-9ur1b"
+          className="MuiFormGroup-root-28 css-xbtlj5"
           role="radiogroup"
         >
           <label
             className="MuiFormControlLabel-root-30"
           >
             <span
-              className="MuiButtonBase-root-48 MuiIconButton-root-42 MuiSwitchBase-root-38 MuiRadio-root-33 MuiRadio-colorSecondary-37 MuiSwitchBase-checked-39 MuiRadio-checked-34"
+              className="MuiButtonBase-root-49 MuiIconButton-root-43 MuiSwitchBase-root-39 MuiRadio-root-34 MuiRadio-colorSecondary-38 MuiSwitchBase-checked-40 MuiRadio-checked-35"
               onBlur={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
@@ -37,11 +37,11 @@ exports[`Weather Page Component renders 1`] = `
               tabIndex={null}
             >
               <span
-                className="MuiIconButton-label-47"
+                className="MuiIconButton-label-48"
               >
                 <svg
                   aria-hidden="true"
-                  className="MuiSvgIcon-root-51"
+                  className="MuiSvgIcon-root-52"
                   color={undefined}
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -51,23 +51,26 @@ exports[`Weather Page Component renders 1`] = `
                   />
                 </svg>
                 <input
+                  autoFocus={undefined}
                   checked={true}
-                  className="MuiSwitchBase-input-41"
+                  className="MuiSwitchBase-input-42"
                   disabled={undefined}
                   id={undefined}
                   name="searchby"
                   onChange={[Function]}
+                  readOnly={undefined}
+                  required={undefined}
                   tabIndex={undefined}
                   type="radio"
                   value="city"
                 />
               </span>
               <span
-                className="MuiTouchRipple-root-57"
+                className="MuiTouchRipple-root-59"
               />
             </span>
             <span
-              className="MuiTypography-root-64 MuiTypography-body1-73 MuiFormControlLabel-label-32"
+              className="MuiTypography-root-66 MuiTypography-body1-75 MuiFormControlLabel-label-33"
             >
               By City
             </span>
@@ -76,7 +79,7 @@ exports[`Weather Page Component renders 1`] = `
             className="MuiFormControlLabel-root-30"
           >
             <span
-              className="MuiButtonBase-root-48 MuiIconButton-root-42 MuiSwitchBase-root-38 MuiRadio-root-33 MuiRadio-colorSecondary-37"
+              className="MuiButtonBase-root-49 MuiIconButton-root-43 MuiSwitchBase-root-39 MuiRadio-root-34 MuiRadio-colorSecondary-38"
               onBlur={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
@@ -91,11 +94,11 @@ exports[`Weather Page Component renders 1`] = `
               tabIndex={null}
             >
               <span
-                className="MuiIconButton-label-47"
+                className="MuiIconButton-label-48"
               >
                 <svg
                   aria-hidden="true"
-                  className="MuiSvgIcon-root-51"
+                  className="MuiSvgIcon-root-52"
                   color={undefined}
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -105,23 +108,26 @@ exports[`Weather Page Component renders 1`] = `
                   />
                 </svg>
                 <input
+                  autoFocus={undefined}
                   checked={false}
-                  className="MuiSwitchBase-input-41"
+                  className="MuiSwitchBase-input-42"
                   disabled={undefined}
                   id={undefined}
                   name="searchby"
                   onChange={[Function]}
+                  readOnly={undefined}
+                  required={undefined}
                   tabIndex={undefined}
                   type="radio"
                   value="coords"
                 />
               </span>
               <span
-                className="MuiTouchRipple-root-57"
+                className="MuiTouchRipple-root-59"
               />
             </span>
             <span
-              className="MuiTypography-root-64 MuiTypography-body1-73 MuiFormControlLabel-label-32"
+              className="MuiTypography-root-66 MuiTypography-body1-75 MuiFormControlLabel-label-33"
             >
               By Latitude/Longitude
             </span>
@@ -130,7 +136,7 @@ exports[`Weather Page Component renders 1`] = `
             className="MuiFormControlLabel-root-30"
           >
             <span
-              className="MuiButtonBase-root-48 MuiIconButton-root-42 MuiSwitchBase-root-38 MuiRadio-root-33 MuiRadio-colorSecondary-37"
+              className="MuiButtonBase-root-49 MuiIconButton-root-43 MuiSwitchBase-root-39 MuiRadio-root-34 MuiRadio-colorSecondary-38"
               onBlur={[Function]}
               onFocus={[Function]}
               onKeyDown={[Function]}
@@ -145,11 +151,11 @@ exports[`Weather Page Component renders 1`] = `
               tabIndex={null}
             >
               <span
-                className="MuiIconButton-label-47"
+                className="MuiIconButton-label-48"
               >
                 <svg
                   aria-hidden="true"
-                  className="MuiSvgIcon-root-51"
+                  className="MuiSvgIcon-root-52"
                   color={undefined}
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -159,23 +165,26 @@ exports[`Weather Page Component renders 1`] = `
                   />
                 </svg>
                 <input
+                  autoFocus={undefined}
                   checked={false}
-                  className="MuiSwitchBase-input-41"
+                  className="MuiSwitchBase-input-42"
                   disabled={undefined}
                   id={undefined}
                   name="searchby"
                   onChange={[Function]}
+                  readOnly={undefined}
+                  required={undefined}
                   tabIndex={undefined}
                   type="radio"
                   value="zip"
                 />
               </span>
               <span
-                className="MuiTouchRipple-root-57"
+                className="MuiTouchRipple-root-59"
               />
             </span>
             <span
-              className="MuiTypography-root-64 MuiTypography-body1-73 MuiFormControlLabel-label-32"
+              className="MuiTypography-root-66 MuiTypography-body1-75 MuiFormControlLabel-label-33"
             >
               By Zip Code
             </span>
@@ -184,24 +193,23 @@ exports[`Weather Page Component renders 1`] = `
         <div
           aria-describedby={undefined}
           aria-label="Enter city name"
-          className="MuiFormControl-root-88 css-e8diyq"
+          className="MuiFormControl-root-91 css-e8diyq"
         >
           <label
-            className="MuiFormLabel-root-97 MuiInputLabel-root-92 MuiInputLabel-formControl-93 MuiInputLabel-animated-96"
+            className="MuiFormLabel-root-100 MuiInputLabel-root-95 MuiInputLabel-formControl-96 MuiInputLabel-animated-99"
             data-shrink={false}
             htmlFor={undefined}
           >
             Enter city name
           </label>
           <div
-            className="MuiInput-root-102 MuiInput-formControl-103 MuiInput-underline-106"
+            className="MuiInput-root-107 MuiInput-formControl-108 MuiInput-underline-111"
           >
             <input
               aria-invalid={false}
-              aria-required={false}
               autoComplete={undefined}
               autoFocus={undefined}
-              className="MuiInput-input-110"
+              className="MuiInput-input-115"
               defaultValue={undefined}
               disabled={false}
               id={undefined}
@@ -213,15 +221,15 @@ exports[`Weather Page Component renders 1`] = `
               onKeyUp={undefined}
               placeholder="Enter city name"
               readOnly={undefined}
-              required={undefined}
+              required={false}
               rows={undefined}
               type="text"
-              value={undefined}
+              value=""
             />
           </div>
         </div>
         <button
-          className="MuiButtonBase-root-48 MuiButton-root-115 MuiButton-contained-124 MuiButton-containedPrimary-125 MuiButton-raised-127 MuiButton-raisedPrimary-128"
+          className="MuiButtonBase-root-49 MuiButton-root-120 MuiButton-contained-131 MuiButton-containedPrimary-132 MuiButton-raised-134 MuiButton-raisedPrimary-135"
           disabled={false}
           onBlur={[Function]}
           onFocus={[Function]}
@@ -237,12 +245,12 @@ exports[`Weather Page Component renders 1`] = `
           type="submit"
         >
           <span
-            className="MuiButton-label-116"
+            className="MuiButton-label-121"
           >
             Get Weather
           </span>
           <span
-            className="MuiTouchRipple-root-57"
+            className="MuiTouchRipple-root-59"
           />
         </button>
       </form>

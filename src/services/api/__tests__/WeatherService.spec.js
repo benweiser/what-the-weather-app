@@ -19,19 +19,22 @@ describe("API", () => {
 
   it("should create a namespaced object for the API call", () => {
     expect(typeof API).toBe("object");
-    expect(typeof API.getWeather).toBe("function");
+    expect(typeof API.getWeatherByCity).toBe("function");
     expect(typeof API.getWeatherByZipCode).toBe("function");
     expect(typeof API.getWeatherByZipCode).toBe("function");
   });
 
   it("should include a getWeather function", () => {
-    expect(typeof API.getWeather).toBe("function");
+    expect(typeof API.getWeatherByCity).toBe("function");
   });
 
   it("should create a getWeather that wraps axios", () => {
-    API.getWeather(`Chicago`, mockConfig);
+    API.getWeatherByCity(`Chicago`, mockConfig);
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
-    expect(mockAxios.get).toHaveBeenCalledWith(`/weather?Chicago`, mockConfig);
+    expect(mockAxios.get).toHaveBeenCalledWith(
+      `/weather?q=Chicago`,
+      mockConfig
+    );
   });
 
   it("should get weather by zip code", () => {

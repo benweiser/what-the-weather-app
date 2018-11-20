@@ -23,6 +23,12 @@ const getWeather = query => {
 
 /**
  *
+ * @param {string} city
+ */
+const getWeatherByCity = city => getWeather(`q=${city}`);
+
+/**
+ *
  * @param {string} zipCode
  */
 const getWeatherByZipCode = zipCode => getWeather(`zip=${zipCode},us`);
@@ -35,9 +41,9 @@ const getWeatherByZipCode = zipCode => getWeather(`zip=${zipCode},us`);
 const getWeatherByCoords = (lat, lon) => getWeather(`lat=${lat}&lon=${lon}`);
 
 const API = {
-  getWeather,
   getWeatherByZipCode,
-  getWeatherByCoords
+  getWeatherByCoords,
+  getWeatherByCity
 };
 
 export default API;

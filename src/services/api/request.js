@@ -56,7 +56,9 @@ export const getCachedAjax = (query, config, storageId) => {
     }
   }
   return getAjax(query, config).then(response => {
-    sessionStorage.setItem(cacheId, JSON.stringify(response));
+    if (response) {
+      sessionStorage.setItem(cacheId, JSON.stringify(response));
+    }
     return response;
   });
 };

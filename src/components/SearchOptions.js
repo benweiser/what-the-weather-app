@@ -4,36 +4,45 @@ import { PropTypes } from "prop-types";
 import { FormControlLabel, RadioGroup, Radio } from "@material-ui/core";
 
 const StyledSearchByRadioGroup = styled(RadioGroup)`
-  flex-direction: row;
+  && {
+    flex-direction: row;
+  }
 `;
 
 class SearchOptions extends React.PureComponent {
-  state = {
-    value: "city"
-  };
-
   handleChange = e => {
     e.preventDefault();
-    this.setState({ value: e.target.value }, () => {
-      return this.props.onSearchTypeSelect(this.state.value);
-    });
+    this.props.onSearchTypeSelect(e.target.value);
   };
 
   render() {
+    const { selectedOption } = this.props;
+
     return (
       <StyledSearchByRadioGroup
         aria-label="Select zip, coordinates, or location to search"
         name="searchby"
         onChange={this.handleChange}
-        value={this.state.value}
+        value={selectedOption}
       >
-        <FormControlLabel value="city" control={<Radio />} label="By City" />
+        <FormControlLabel
+          value="city"
+          checked={selectedOption === "city"}
+          control={<Radio />}
+          label="By City"
+        />
         <FormControlLabel
           control={<Radio />}
+          checked={selectedOption === "coords"}
           label="By Latitude/Longitude"
           value="coords"
         />
-        <FormControlLabel value="zip" control={<Radio />} label="By Zip Code" />
+        <FormControlLabel
+          value="zip"
+          checked={selectedOption === "zip"}
+          control={<Radio />}
+          label="By Zip Code"
+        />
       </StyledSearchByRadioGroup>
     );
   }
