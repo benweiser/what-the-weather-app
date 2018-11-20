@@ -6,7 +6,12 @@ import { css } from "emotion";
 import SearchOptions from "./SearchOptions";
 
 const StyledTextField = css`
-  width: 380px;
+  flex: 1;
+  width: 100%;
+`;
+
+const StyledSearchFormDiv = css`
+  display: flex;
 `;
 
 class WeatherSearch extends React.Component {
@@ -70,7 +75,7 @@ class WeatherSearch extends React.Component {
         );
 
       default:
-        return <div>none</div>;
+        return <div />;
     }
   };
 
@@ -82,10 +87,12 @@ class WeatherSearch extends React.Component {
             onSearchTypeSelect={this.onSearchTypeSelect}
             selectedOption={this.state.searchMethod}
           />
-          {this.renderInputFieldByType()}
-          <Button color="primary" variant="contained" type="submit">
-            Get Weather
-          </Button>
+          <div className={StyledSearchFormDiv}>
+            {this.renderInputFieldByType()}
+            <Button color="primary" variant="contained" type="submit">
+              Get Weather
+            </Button>
+          </div>
         </form>
       </div>
     );

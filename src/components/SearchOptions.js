@@ -6,6 +6,7 @@ import { FormControlLabel, RadioGroup, Radio } from "@material-ui/core";
 const StyledSearchByRadioGroup = styled(RadioGroup)`
   && {
     flex-direction: row;
+    margin-bottom: 16px;
   }
 `;
 

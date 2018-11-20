@@ -20,7 +20,7 @@ export const isExpired = (expireTime, response) =>
  */
 export const getAjax = async (query, config) => {
   try {
-    const { data } = await axios.get(query, config);
+    const { data } = await axios.get(encodeURI(query), config);
     const response = {
       data,
       query,

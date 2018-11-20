@@ -5,6 +5,10 @@ import WeatherSearch from "./WeatherSearch";
 import WeatherStats from "./WeatherStats";
 import Loader from "./Loader";
 import Paper from "@material-ui/core/Paper";
+import {
+  getFlickrPhotosByCoords,
+  getRandomPhoto
+} from "../services/api/FlickrService";
 
 const StyledWeatherStats = css`
   padding: 32px;
@@ -35,27 +39,39 @@ class WeatherPage extends React.Component {
     fetching: false
   };
 
-  onFetchWeather = location => {
-    console.log("location", location);
+  onFetchWeather = async location => {
     this.setState({ fetching: true });
-    weatherMap(location)
-      .then(res => {
-        return this.setState({
-          data: res.data,
-          fetching: false,
-          searchMethod: location.searchMethod
-        });
-      })
-      .catch(e => {
-        console.log("error", e);
-        this.setState({ fetching: false });
-      });
+
+    const weatherData = await weatherMap(location);
+    console.log("wewather data", weatherData.data);
+    const {
+      data: { coord }
+    } = weatherData;
+    const photoData = await getFlickrPhotosByCoords(
+      coord.lat,
+      coord.lon,
+      weatherData.data.name
+    );
+
+    const photo = await getRandomPhoto(photoData);
+
+    this.setState({
+      currentPhoto: photo,
+      data: weatherData.data,
+      fetching: false,
+      searchMethod: location.searchMethod,
+      photos: photoData
+    });
   };
+
+  getCityPhoto;
 
   render() {
     const weatherData = this.state.data;
+    console.log("current state", this.state);
     return (
       <div className={StyledWeatherSearchWrapper}>
+        <img src={this.state.currentPhoto} alt="test" />
         <Paper elevation={1} className={StyledWeatherStats}>
           <WeatherSearch
             className={StyledWeatherSearch}
