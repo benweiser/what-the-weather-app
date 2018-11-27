@@ -1,21 +1,25 @@
-import React from "react";
-import { css } from "emotion";
-import API from "../services/api/WeatherService";
-import WeatherSearch from "./WeatherSearch";
-import WeatherStats from "./WeatherStats";
-import Loader from "./Loader";
-import Paper from "@material-ui/core/Paper";
+import React from 'react';
+import styled, { css } from 'react-emotion';
+import API from '../services/api/WeatherService';
+import WeatherSearch from './WeatherSearch';
+import WeatherStats from './WeatherStats';
+import Loader from './Loader';
+import Paper from '@material-ui/core/Paper';
 import {
   getFlickrPhotosByCoords,
   getRandomPhoto
-} from "../services/api/FlickrService";
+} from '../services/api/FlickrService';
 
 const StyledWeatherStats = css`
   padding: 32px;
+  max-width: 700px;
+  margin: 0 auto;
 `;
 
-const StyledWeatherSearchWrapper = css`
-  max-width: 1280px;
+const StyledWeatherSearchWrapper = styled('div')`
+  background: url(${props => props.background});
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 32px;
   margin: 0 auto;
 `;
@@ -43,7 +47,7 @@ class WeatherPage extends React.Component {
     this.setState({ fetching: true });
 
     const weatherData = await weatherMap(location);
-    console.log("wewather data", weatherData.data);
+    console.log('wewather data', weatherData.data);
     const {
       data: { coord }
     } = weatherData;
@@ -53,10 +57,10 @@ class WeatherPage extends React.Component {
       weatherData.data.name
     );
 
-    const photo = await getRandomPhoto(photoData);
+    const currentPhoto = await getRandomPhoto(photoData);
 
     this.setState({
-      currentPhoto: photo,
+      currentPhoto,
       data: weatherData.data,
       fetching: false,
       searchMethod: location.searchMethod,
@@ -67,24 +71,23 @@ class WeatherPage extends React.Component {
   getCityPhoto;
 
   render() {
-    const weatherData = this.state.data;
-    console.log("current state", this.state);
+    const { data, currentPhoto, searchMethod } = this.state;
+
     return (
-      <div className={StyledWeatherSearchWrapper}>
-        <img src={this.state.currentPhoto} alt="test" />
+      <StyledWeatherSearchWrapper background={currentPhoto}>
         <Paper elevation={1} className={StyledWeatherStats}>
           <WeatherSearch
             className={StyledWeatherSearch}
             onFetchWeather={this.onFetchWeather}
-            searchMethod={this.state.searchMethod}
+            searchMethod={searchMethod}
           />
           {this.state.fetching ? (
             <Loader />
           ) : (
-            weatherData.main && <WeatherStats data={weatherData} />
+            data.main && <WeatherStats data={data} />
           )}
         </Paper>
-      </div>
+      </StyledWeatherSearchWrapper>
     );
   }
 }
