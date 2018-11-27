@@ -32,7 +32,8 @@ export const getRandomPhoto = photos => {
     return null;
   }
 
-  const photo = photos[0];
+  const photo = photos[Math.floor(Math.random() * photos.length)];
+
   const { farm, secret, server, id } = photo;
   return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`;
 };

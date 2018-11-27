@@ -1,14 +1,11 @@
 import React from 'react';
 import styled, { css } from 'react-emotion';
-import API from '../services/api/WeatherService';
+import API from '../services/api';
 import WeatherSearch from './WeatherSearch';
 import WeatherStats from './WeatherStats';
 import Loader from './Loader';
 import Paper from '@material-ui/core/Paper';
-import {
-  getFlickrPhotosByCoords,
-  getRandomPhoto
-} from '../services/api/FlickrService';
+import { getRandomPhoto } from '../services/api/FlickrService';
 
 const StyledWeatherStats = css`
   padding: 32px;
@@ -47,20 +44,18 @@ class WeatherPage extends React.Component {
     this.setState({ fetching: true });
 
     const weatherData = await weatherMap(location);
-    console.log('wewather data', weatherData.data);
+
     const {
       data: { coord }
     } = weatherData;
-    const photoData = await getFlickrPhotosByCoords(
+    const photoData = await API.getFlickrPhotosByCoords(
       coord.lat,
       coord.lon,
       weatherData.data.name
     );
 
-    const currentPhoto = await getRandomPhoto(photoData);
-
     this.setState({
-      currentPhoto,
+      currentPhoto: getRandomPhoto(photoData),
       data: weatherData.data,
       fetching: false,
       searchMethod: location.searchMethod,

@@ -1,11 +1,11 @@
-import { getCachedAjax } from "./request";
-import apiKey from "../../apiKey";
+import { getCachedAjax } from './request';
+import apiKey from '../../apiKey';
 
 export const API_CONFIG = {
-  baseURL: "//api.openweathermap.org/data/2.5",
+  baseURL: '//api.openweathermap.org/data/2.5',
   params: {
     appid: apiKey,
-    units: "imperial"
+    units: 'imperial'
   },
   timeout: 1000
 };
@@ -16,7 +16,7 @@ export const API_CONFIG = {
  */
 const getWeather = query => {
   return Promise.resolve(
-    getCachedAjax(`/weather?${query}`, API_CONFIG, "weather")
+    getCachedAjax(`/weather?${query}`, API_CONFIG, 'weather')
     // getAjax(`/weather?${query}`, API_CONFIG, "weather")
   );
 };
@@ -25,25 +25,18 @@ const getWeather = query => {
  *
  * @param {string} city
  */
-const getWeatherByCity = city => getWeather(`q=${city}`);
+export const getWeatherByCity = city => getWeather(`q=${city}`);
 
 /**
  *
  * @param {string} zipCode
  */
-const getWeatherByZipCode = zipCode => getWeather(`zip=${zipCode},us`);
+export const getWeatherByZipCode = zipCode => getWeather(`zip=${zipCode},us`);
 
 /**
  *
  * @param {number} lat
  * @param {number} lon
  */
-const getWeatherByCoords = (lat, lon) => getWeather(`lat=${lat}&lon=${lon}`);
-
-const API = {
-  getWeatherByZipCode,
-  getWeatherByCoords,
-  getWeatherByCity
-};
-
-export default API;
+export const getWeatherByCoords = (lat, lon) =>
+  getWeather(`lat=${lat}&lon=${lon}`);
