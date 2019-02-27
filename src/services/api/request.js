@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
 // Note in a production app we'd need something more robust, redux-persist with localforage is a nice option
 
 const EXPIRE_TIME = 600000; // 10 minutes
-const SESSION_PREFIX = "bw";
+const SESSION_PREFIX = 'bw';
 
 /**
  *
@@ -28,7 +28,7 @@ export const getAjax = async (query, config) => {
     };
     return response;
   } catch (error) {
-    console.error("error", error);
+    console.error('getAjax method failed', error);
   }
 };
 

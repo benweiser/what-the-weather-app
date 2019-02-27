@@ -68,6 +68,10 @@ class WeatherPage extends React.Component {
   render() {
     const { data, currentPhoto, searchMethod } = this.state;
 
+    if (!data) {
+      return null;
+    }
+
     return (
       <StyledWeatherSearchWrapper background={currentPhoto}>
         <Paper elevation={1} className={StyledWeatherStats}>

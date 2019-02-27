@@ -1,16 +1,16 @@
-import React from "react";
-import { PropTypes } from "prop-types";
-import "../styles/icons/weather-icons.min.css";
-import styled from "react-emotion";
+import React from 'react';
+import { PropTypes } from 'prop-types';
+import '../styles/icons/weather-icons.min.css';
+import styled from 'react-emotion';
 
 const iconSizes = {
-  sm: "24px",
-  md: "32px",
-  lg: "48px",
-  xl: "64px"
+  sm: '24px',
+  md: '32px',
+  lg: '48px',
+  xl: '64px'
 };
 
-const StyledIcon = styled("span")`
+const StyledIcon = styled('span')`
   font-size: ${props => iconSizes[props.size] || props.size};
 `;
 

@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "react-emotion";
-import { PropTypes } from "prop-types";
-import { FormControlLabel, RadioGroup, Radio } from "@material-ui/core";
+import React from 'react';
+import styled from 'react-emotion';
+import { PropTypes } from 'prop-types';
+import { FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
 
 const StyledSearchByRadioGroup = styled(RadioGroup)`
   && {
@@ -28,19 +28,19 @@ class SearchOptions extends React.PureComponent {
       >
         <FormControlLabel
           value="city"
-          checked={selectedOption === "city"}
+          checked={selectedOption === 'city'}
           control={<Radio />}
           label="By City"
         />
         <FormControlLabel
           control={<Radio />}
-          checked={selectedOption === "coords"}
+          checked={selectedOption === 'coords'}
           label="By Latitude/Longitude"
           value="coords"
         />
         <FormControlLabel
           value="zip"
-          checked={selectedOption === "zip"}
+          checked={selectedOption === 'zip'}
           control={<Radio />}
           label="By Zip Code"
         />

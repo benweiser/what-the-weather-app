@@ -34,10 +34,11 @@ exports[`Weather Stats renders 1`] = `
     Current Humidity: 
     40
   </p>
-  <p>
-    Current Conditions: 
-    Test description
-  </p>
+  <div>
+    Current Conditions:
+     
+    <div />
+  </div>
   <p>
     Sunset Time: 
     8:00
@@ -54,5 +55,96 @@ exports[`Weather Stats renders 1`] = `
     Wind Degree: 
     43
   </p>
+  <div
+    style={
+      Object {
+        "height": "400px",
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      onClick={[Function]}
+      onMouseDownCapture={[Function]}
+      onMouseMove={[Function]}
+      style={
+        Object {
+          "height": "100%",
+          "margin": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": "100%",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "height": "100%",
+            "left": 0,
+            "margin": 0,
+            "padding": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          }
+        }
+      />
+      <div
+        style={
+          Object {
+            "height": "50%",
+            "left": "50%",
+            "margin": 0,
+            "padding": 0,
+            "position": "absolute",
+            "top": "50%",
+            "width": "50%",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "height": "100%",
+              "left": 0,
+              "margin": 0,
+              "padding": 0,
+              "position": "absolute",
+              "top": 0,
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "height": 0,
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+                "width": 0,
+              }
+            }
+          >
+            <div
+              style={
+                Object {
+                  "color": "white",
+                  "fontSize": "21px",
+                }
+              }
+            >
+              <i
+                aria-hidden="true"
+                className="fa fa-map-marker"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;

@@ -1,15 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Weather Widget Snapshot renders 1`] = `
-<div
-  className={undefined}
->
+<div>
   <form
     onSubmit={[Function]}
   >
     <div
       aria-label="Select zip, coordinates, or location to search"
-      className="MuiFormGroup-root-1 css-xbtlj5"
+      className="MuiFormGroup-root-1 css-hpd1dz"
       role="radiogroup"
     >
       <label
@@ -27,7 +25,6 @@ exports[`Weather Widget Snapshot renders 1`] = `
           onTouchEnd={[Function]}
           onTouchMove={[Function]}
           onTouchStart={[Function]}
-          role={undefined}
           tabIndex={null}
         >
           <span
@@ -36,7 +33,6 @@ exports[`Weather Widget Snapshot renders 1`] = `
             <svg
               aria-hidden="true"
               className="MuiSvgIcon-root-25"
-              color={undefined}
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -45,16 +41,10 @@ exports[`Weather Widget Snapshot renders 1`] = `
               />
             </svg>
             <input
-              autoFocus={undefined}
               checked={true}
               className="MuiSwitchBase-input-15"
-              disabled={undefined}
-              id={undefined}
               name="searchby"
               onChange={[Function]}
-              readOnly={undefined}
-              required={undefined}
-              tabIndex={undefined}
               type="radio"
               value="city"
             />
@@ -84,7 +74,6 @@ exports[`Weather Widget Snapshot renders 1`] = `
           onTouchEnd={[Function]}
           onTouchMove={[Function]}
           onTouchStart={[Function]}
-          role={undefined}
           tabIndex={null}
         >
           <span
@@ -93,7 +82,6 @@ exports[`Weather Widget Snapshot renders 1`] = `
             <svg
               aria-hidden="true"
               className="MuiSvgIcon-root-25"
-              color={undefined}
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -102,16 +90,10 @@ exports[`Weather Widget Snapshot renders 1`] = `
               />
             </svg>
             <input
-              autoFocus={undefined}
               checked={false}
               className="MuiSwitchBase-input-15"
-              disabled={undefined}
-              id={undefined}
               name="searchby"
               onChange={[Function]}
-              readOnly={undefined}
-              required={undefined}
-              tabIndex={undefined}
               type="radio"
               value="coords"
             />
@@ -141,7 +123,6 @@ exports[`Weather Widget Snapshot renders 1`] = `
           onTouchEnd={[Function]}
           onTouchMove={[Function]}
           onTouchStart={[Function]}
-          role={undefined}
           tabIndex={null}
         >
           <span
@@ -150,7 +131,6 @@ exports[`Weather Widget Snapshot renders 1`] = `
             <svg
               aria-hidden="true"
               className="MuiSvgIcon-root-25"
-              color={undefined}
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -159,16 +139,10 @@ exports[`Weather Widget Snapshot renders 1`] = `
               />
             </svg>
             <input
-              autoFocus={undefined}
               checked={false}
               className="MuiSwitchBase-input-15"
-              disabled={undefined}
-              id={undefined}
               name="searchby"
               onChange={[Function]}
-              readOnly={undefined}
-              required={undefined}
-              tabIndex={undefined}
               type="radio"
               value="zip"
             />
@@ -185,68 +159,61 @@ exports[`Weather Widget Snapshot renders 1`] = `
       </label>
     </div>
     <div
-      aria-describedby={undefined}
-      aria-label="Enter city name"
-      className="MuiFormControl-root-64 css-e8diyq"
+      className="css-ov1ktg"
     >
-      <label
-        className="MuiFormLabel-root-73 MuiInputLabel-root-68 MuiInputLabel-formControl-69 MuiInputLabel-animated-72"
-        data-shrink={false}
-        htmlFor={undefined}
-      >
-        Enter city name
-      </label>
       <div
-        className="MuiInput-root-80 MuiInput-formControl-81 MuiInput-underline-84"
+        aria-label="Enter city name"
+        className="MuiFormControl-root-64 css-1bvmw1t"
       >
-        <input
-          aria-invalid={false}
-          autoComplete={undefined}
-          autoFocus={undefined}
-          className="MuiInput-input-88"
-          defaultValue={undefined}
-          disabled={false}
-          id={undefined}
-          name={undefined}
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={undefined}
-          onKeyUp={undefined}
-          placeholder="Enter city name"
-          readOnly={undefined}
-          required={false}
-          rows={undefined}
-          type="text"
-          value=""
-        />
+        <label
+          className="MuiFormLabel-root-73 MuiInputLabel-root-68 MuiInputLabel-formControl-69 MuiInputLabel-animated-72"
+          data-shrink={false}
+        >
+          Enter city name
+        </label>
+        <div
+          className="MuiInput-root-80 MuiInput-formControl-81 MuiInput-underline-84"
+        >
+          <input
+            aria-invalid={false}
+            className="MuiInput-input-88"
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="Enter city name"
+            required={false}
+            type="text"
+            value=""
+          />
+        </div>
       </div>
-    </div>
-    <button
-      className="MuiButtonBase-root-22 MuiButton-root-93 MuiButton-contained-104 MuiButton-containedPrimary-105 MuiButton-raised-107 MuiButton-raisedPrimary-108"
-      disabled={false}
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchEnd={[Function]}
-      onTouchMove={[Function]}
-      onTouchStart={[Function]}
-      tabIndex="0"
-      type="submit"
-    >
-      <span
-        className="MuiButton-label-94"
+      <button
+        className="MuiButtonBase-root-22 MuiButton-root-93 MuiButton-contained-104 MuiButton-containedPrimary-105 MuiButton-raised-107 MuiButton-raisedPrimary-108"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="submit"
       >
-        Get Weather
-      </span>
-      <span
-        className="MuiTouchRipple-root-32"
-      />
-    </button>
+        <span
+          className="MuiButton-label-94"
+        >
+          Get Weather
+        </span>
+        <span
+          className="MuiTouchRipple-root-32"
+        />
+      </button>
+    </div>
   </form>
 </div>
 `;

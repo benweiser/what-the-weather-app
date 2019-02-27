@@ -1,12 +1,20 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
-import CurrentWeatherIcon from "./CurrentWeatherIcon";
+import CurrentWeatherIcon from './CurrentWeatherIcon';
+import GoogleMap from './GoogleMap';
 
 const WeatherStats = ({ data }) => {
   if (!data) {
     return null;
   }
+  const {
+    coord: { lat, lon } = {},
+    main: { temp, temp_min, temp_max, humidity } = {},
+    sys: { sunset, sunrise } = {},
+    wind: { deg, speed } = {}
+  } = data;
+
   return (
     <div>
       <Typography variant="headline" component="h3" gutterBottom>
@@ -14,17 +22,29 @@ const WeatherStats = ({ data }) => {
       </Typography>
       <CurrentWeatherIcon currentConditions={data.weather[0].id} />
       <p>
-        Latitude: {data.coord.lat}, Longitude: {data.coord.lon}
+        Latitude: {lat}, Longitude: {lon}
       </p>
-      <p>Current Temperature: {data.main.temp}</p>
-      <p>Today's Low: {data.main.temp_min}</p>
-      <p>Today's High: {data.main.temp_max}</p>
-      <p>Current Humidity: {data.main.humidity}</p>
-      <p>Current Conditions: {data.weather[0].description}</p>
-      <p>Sunset Time: {data.sys.sunset}</p>
-      <p>Sunrise Time: {data.sys.sunrise}</p>
-      <p>Wind Speed: {data.wind.speed}</p>
-      <p>Wind Degree: {data.wind.deg}</p>
+      <p>Current Temperature: {temp}</p>
+      <p>Today's Low: {temp_min}</p>
+      <p>Today's High: {temp_max}</p>
+      <p>Current Humidity: {humidity}</p>
+      <div>
+        Current Conditions:{' '}
+        {data.weather.map(condition => (
+          <div key={`${condition.main}`}>{condition.main}</div>
+        ))}
+      </div>
+      <p>Sunset Time: {sunset}</p>
+      <p>Sunrise Time: {sunrise}</p>
+      <p>Wind Speed: {speed}</p>
+      <p>Wind Degree: {deg}</p>
+
+      <GoogleMap
+        center={{
+          lat,
+          lng: lon
+        }}
+      />
     </div>
   );
 };
