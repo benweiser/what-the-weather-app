@@ -2,7 +2,7 @@
 // --- Mock Date Helper ---
 
 /**
- * MockDateHekper
+ * MockDateHelper
  *
  * Provides a couple functions that allow you to mock Date objects. Call
  * MockDateHelper.mockDate() and pass in a string ISO-8601 value to mock that
@@ -29,7 +29,6 @@ const RealDate = Date; // store reference to actual Date class
 export const MockDateHelper = {
   mockDate: isoDate => {
     global.Date = class extends RealDate {
-      // tslint:disable-next-line:readonly-array
       constructor(...args) {
         super();
         if (args.length) {
