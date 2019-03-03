@@ -1,9 +1,9 @@
-import { PropTypes } from 'prop-types';
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import { css } from 'emotion';
-import SearchOptions from './SearchOptions';
-import WeatherSearchInput from './WeatherSearchInput';
+import { PropTypes } from "prop-types";
+import React from "react";
+import Button from "@material-ui/core/Button";
+import { css } from "emotion";
+import SearchOptions from "./SearchOptions";
+import WeatherSearchInput from "./WeatherSearchInput";
 
 const StyledSearchFormDiv = css`
   display: flex;
@@ -11,8 +11,8 @@ const StyledSearchFormDiv = css`
 
 class WeatherSearch extends React.Component {
   state = {
-    searchMethod: 'city',
-    value: ''
+    searchMethod: "city",
+    value: ""
   };
 
   handleChange = e => {
@@ -22,8 +22,9 @@ class WeatherSearch extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    if (this.props.onFetchWeather) {
-      this.props.onFetchWeather(this.state);
+    const { onFetchWeather } = this.props;
+    if (onFetchWeather) {
+      onFetchWeather(this.state);
     }
   };
 
@@ -32,13 +33,14 @@ class WeatherSearch extends React.Component {
   };
 
   render() {
+    const { className } = this.props;
     const { searchMethod, value } = this.state;
     return (
-      <div className={this.props.className}>
+      <div className={className}>
         <form onSubmit={this.handleSubmit}>
           <SearchOptions
             onSearchTypeSelect={this.onSearchTypeSelect}
-            selectedOption={this.state.searchMethod}
+            selectedOption={searchMethod}
           />
           <div className={StyledSearchFormDiv}>
             <WeatherSearchInput
@@ -46,7 +48,12 @@ class WeatherSearch extends React.Component {
               type={searchMethod}
               value={value}
             />
-            <Button color="primary" variant="contained" type="submit">
+            <Button
+              data-testid="search-button"
+              color="primary"
+              variant="contained"
+              type="submit"
+            >
               Get Weather
             </Button>
           </div>

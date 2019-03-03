@@ -1,11 +1,11 @@
-import React from 'react';
-import styled, { css } from 'react-emotion';
-import API from '../services/api';
-import WeatherSearch from './WeatherSearch';
-import WeatherStats from './WeatherStats';
-import Loader from './Loader';
-import Paper from '@material-ui/core/Paper';
-import { getRandomPhoto } from '../services/api/FlickrService';
+import React from "react";
+import styled, { css } from "react-emotion";
+import API from "../services/api";
+import WeatherSearch from "./WeatherSearch";
+import WeatherStats from "./WeatherStats";
+import Loader from "./Loader";
+import Paper from "@material-ui/core/Paper";
+import { getRandomFlickrPhoto } from "../services/api/FlickrService";
 
 const StyledWeatherStats = css`
   padding: 32px;
@@ -13,7 +13,7 @@ const StyledWeatherStats = css`
   margin: 0 auto;
 `;
 
-const StyledWeatherSearchWrapper = styled('div')`
+const StyledWeatherSearchWrapper = styled("div")`
   background: url(${props => props.background});
   background-repeat: no-repeat;
   background-size: cover;
@@ -25,7 +25,7 @@ const StyledWeatherSearch = css`
   margin-bottom: 32px;
 `;
 
-const weatherMap = location => {
+export const weatherMap = location => {
   const searchType = {
     city: value => API.getWeatherByCity(value),
     coords: value => API.getWeatherByCoords(value),
@@ -55,15 +55,13 @@ class WeatherPage extends React.Component {
     );
 
     this.setState({
-      currentPhoto: getRandomPhoto(photoData),
+      currentPhoto: getRandomFlickrPhoto(photoData),
       data: weatherData.data,
       fetching: false,
       searchMethod: location.searchMethod,
       photos: photoData
     });
   };
-
-  getCityPhoto;
 
   render() {
     const { data, currentPhoto, searchMethod } = this.state;

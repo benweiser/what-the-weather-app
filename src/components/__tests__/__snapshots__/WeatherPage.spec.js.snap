@@ -155,6 +155,7 @@ exports[`Weather Page Component should render a weather page 1`] = `
             </div>
             <button
               class="MuiButtonBase-root-49 MuiButton-root-120 MuiButton-contained-131 MuiButton-containedPrimary-132 MuiButton-raised-134 MuiButton-raisedPrimary-135"
+              data-testid="search-button"
               tabindex="0"
               type="submit"
             >
