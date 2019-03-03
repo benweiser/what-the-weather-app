@@ -1,14 +1,9 @@
-import { PropTypes } from "prop-types";
-import React from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import { css } from "emotion";
-import SearchOptions from "./SearchOptions";
-
-const StyledTextField = css`
-  flex: 1;
-  width: 100%;
-`;
+import { PropTypes } from 'prop-types';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import { css } from 'emotion';
+import SearchOptions from './SearchOptions';
+import WeatherSearchInput from './WeatherSearchInput';
 
 const StyledSearchFormDiv = css`
   display: flex;
@@ -16,70 +11,28 @@ const StyledSearchFormDiv = css`
 
 class WeatherSearch extends React.Component {
   state = {
-    searchMethod: "city",
-    value: ""
+    searchMethod: 'city',
+    value: ''
   };
 
   handleChange = e => {
-    this.setState({ value: e.target.value });
     e.preventDefault();
+    this.setState({ value: e.target.value });
   };
 
   handleSubmit = e => {
+    e.preventDefault();
     if (this.props.onFetchWeather) {
       this.props.onFetchWeather(this.state);
     }
-    e.preventDefault();
   };
 
   onSearchTypeSelect = type => {
     this.setState({ searchMethod: type });
   };
 
-  renderInputFieldByType = () => {
-    switch (this.state.searchMethod) {
-      case "city":
-        return (
-          <TextField
-            placeholder="Enter city name"
-            className={StyledTextField}
-            onChange={this.handleChange}
-            label="Enter city name"
-            value={this.state.value}
-            aria-label="Enter city name"
-          />
-        );
-
-      case "coords":
-        return (
-          <TextField
-            placeholder="Enter latitude and longitude"
-            className={StyledTextField}
-            onChange={this.handleChange}
-            label="Enter latitude and longitude"
-            value={this.state.value}
-            aria-label="Enter latitude and longitude"
-          />
-        );
-
-      case "zip":
-        return (
-          <TextField
-            placeholder="Enter zip code"
-            className={StyledTextField}
-            onChange={this.handleChange}
-            label="Enter zip code"
-            value={this.state.value}
-            aria-label="Enter zip code name"
-          />
-        );
-
-      default:
-        return <div />;
-    }
-  };
-
   render() {
+    const { searchMethod, value } = this.state;
     return (
       <div className={this.props.className}>
         <form onSubmit={this.handleSubmit}>
@@ -88,7 +41,11 @@ class WeatherSearch extends React.Component {
             selectedOption={this.state.searchMethod}
           />
           <div className={StyledSearchFormDiv}>
-            {this.renderInputFieldByType()}
+            <WeatherSearchInput
+              onChange={this.handleChange}
+              type={searchMethod}
+              value={value}
+            />
             <Button color="primary" variant="contained" type="submit">
               Get Weather
             </Button>

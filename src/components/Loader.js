@@ -1,7 +1,7 @@
-import * as React from "react";
-import styled from "react-emotion";
+import * as React from 'react';
+import styled from 'react-emotion';
 
-const StyledSpinner = styled("div")`
+const StyledSpinner = styled('div')`
 margin: 40px auto;
 width: 40px;
 height: 40px;

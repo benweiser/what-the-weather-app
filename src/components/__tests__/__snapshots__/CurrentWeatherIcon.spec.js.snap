@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Current Weather Icon renders 1`] = `
-<span
-  className="wi undefined css-tez4ss"
-  size="xl"
-/>
+exports[`Current Weather Icon should render an icon for a weather condition code 1`] = `
+<div>
+  <span
+    class="wi wi-day-rain css-tez4ss"
+    data-testid="CurrentWeatherIcon"
+  />
+</div>
 `;

@@ -1,10 +1,10 @@
-import renderer from 'react-test-renderer';
+import { render } from 'react-testing-library';
 import React from 'react';
 import GoogleMap from '../GoogleMap';
 
-describe('Google Map component', () => {
-  it('renders', () => {
-    const component = renderer.create(
+describe('Google Map Component', () => {
+  it('should render a Google Map', () => {
+    const { container } = render(
       <GoogleMap
         center={{
           lat: 323,
@@ -12,7 +12,7 @@ describe('Google Map component', () => {
         }}
       />
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+
+    expect(container).toMatchSnapshot();
   });
 });

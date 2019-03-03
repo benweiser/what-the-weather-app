@@ -1,12 +1,11 @@
-import renderer from 'react-test-renderer';
+import { render } from 'react-testing-library';
 import React from 'react';
 import WeatherStats from '../WeatherStats';
 import { mockWeatherData } from '../__mocks__/weatherData';
 
 describe('Weather Stats', () => {
-  test('renders', () => {
-    const component = renderer.create(<WeatherStats data={mockWeatherData} />);
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+  it('renders', () => {
+    const { container } = render(<WeatherStats data={mockWeatherData} />);
+    expect(container).toMatchSnapshot();
   });
 });

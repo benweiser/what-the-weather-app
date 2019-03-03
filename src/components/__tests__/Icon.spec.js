@@ -1,15 +1,13 @@
-import renderer from 'react-test-renderer';
+import { render } from 'react-testing-library';
 import * as emotion from 'emotion';
 import { createSerializer } from 'jest-emotion';
 import React from 'react';
 import Icon from '../Icon';
-
 expect.addSnapshotSerializer(createSerializer(emotion));
 
 describe('Icon component', () => {
-  test('renders', () => {
-    const component = renderer.create(<Icon name="wi test" size="xl" />);
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+  it('should render an icon', () => {
+    const { container } = render(<Icon name="wi test" size="xl" />);
+    expect(container).toMatchSnapshot();
   });
 });

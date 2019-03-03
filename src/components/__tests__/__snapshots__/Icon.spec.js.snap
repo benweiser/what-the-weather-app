@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Icon component renders 1`] = `
+exports[`Icon component should render an icon 1`] = `
 .emotion-0 {
   font-size: 64px;
 }
 
-<span
-  className="wi wi test emotion-0"
-  size="xl"
-/>
+<div>
+  <span
+    class="wi wi test emotion-0"
+  />
+</div>
 `;
