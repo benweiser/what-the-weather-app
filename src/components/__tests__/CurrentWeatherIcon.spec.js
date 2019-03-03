@@ -1,14 +1,16 @@
-import renderer from "react-test-renderer";
-import React from "react";
-import CurrentWeatherIcon from "../CurrentWeatherIcon";
+import { render } from 'react-testing-library';
+import React from 'react';
 
-describe("Current Weather Icon", () => {
-  test("renders", () => {
-    const currentConditionCode = 500;
-    const component = renderer.create(
-      <CurrentWeatherIcon name={currentConditionCode} />
+import CurrentWeatherIcon from '../CurrentWeatherIcon';
+
+describe('Current Weather Icon', () => {
+  it('should render an icon for a weather condition code', () => {
+    const mockRainConditionsCode = 500;
+    const { container, getByTestId } = render(
+      <CurrentWeatherIcon currentConditions={mockRainConditionsCode} />
     );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+
+    expect(container).toMatchSnapshot();
+    expect(getByTestId('CurrentWeatherIcon')).toHaveClass('wi-day-rain');
   });
 });

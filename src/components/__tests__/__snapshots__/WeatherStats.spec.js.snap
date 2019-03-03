@@ -2,144 +2,86 @@
 
 exports[`Weather Stats renders 1`] = `
 <div>
-  <h3
-    className="MuiTypography-root-1 MuiTypography-headline-6 MuiTypography-gutterBottom-18"
-  >
-    City: 
-    Test
-  </h3>
-  <span
-    className="wi wi-day-rain css-tez4ss"
-    size="xl"
-  />
-  <p>
-    Latitude: 
-    23
-    , Longitude: 
-    32
-  </p>
-  <p>
-    Current Temperature: 
-    45
-  </p>
-  <p>
-    Today's Low: 
-    23
-  </p>
-  <p>
-    Today's High: 
-    79
-  </p>
-  <p>
-    Current Humidity: 
-    40
-  </p>
   <div>
-    Current Conditions:
-     
-    <div />
-  </div>
-  <p>
-    Sunset Time: 
-    8:00
-  </p>
-  <p>
-    Sunrise Time: 
-    5:00
-  </p>
-  <p>
-    Wind Speed: 
-    43
-  </p>
-  <p>
-    Wind Degree: 
-    43
-  </p>
-  <div
-    style={
-      Object {
-        "height": "400px",
-        "width": "100%",
-      }
-    }
-  >
+    <h3
+      class="MuiTypography-root-1 MuiTypography-headline-6 MuiTypography-gutterBottom-18"
+    >
+      City: 
+      Test
+    </h3>
+    <span
+      class="wi wi-day-rain css-tez4ss"
+      data-testid="CurrentWeatherIcon"
+    />
+    <p>
+      Latitude: 
+      23
+      , Longitude: 
+      32
+    </p>
+    <p>
+      Current Temperature: 
+      45
+    </p>
+    <p>
+      Today's Low: 
+      23
+    </p>
+    <p>
+      Today's High: 
+      79
+    </p>
+    <p>
+      Current Humidity: 
+      40
+    </p>
+    <div>
+      Current Conditions:
+       
+      <div />
+    </div>
+    <p>
+      Sunset Time: 
+      8:00
+    </p>
+    <p>
+      Sunrise Time: 
+      5:00
+    </p>
+    <p>
+      Wind Speed: 
+      43
+    </p>
+    <p>
+      Wind Degree: 
+      43
+    </p>
     <div
-      onClick={[Function]}
-      onMouseDownCapture={[Function]}
-      onMouseMove={[Function]}
-      style={
-        Object {
-          "height": "100%",
-          "margin": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": "100%",
-        }
-      }
+      style="height: 400px; width: 100%;"
     >
       <div
-        style={
-          Object {
-            "height": "100%",
-            "left": 0,
-            "margin": 0,
-            "padding": 0,
-            "position": "absolute",
-            "top": 0,
-            "width": "100%",
-          }
-        }
-      />
-      <div
-        style={
-          Object {
-            "height": "50%",
-            "left": "50%",
-            "margin": 0,
-            "padding": 0,
-            "position": "absolute",
-            "top": "50%",
-            "width": "50%",
-          }
-        }
+        style="width: 100%; height: 100%; margin: 0px; padding: 0px; position: relative;"
       >
         <div
-          style={
-            Object {
-              "height": "100%",
-              "left": 0,
-              "margin": 0,
-              "padding": 0,
-              "position": "absolute",
-              "top": 0,
-              "width": "100%",
-            }
-          }
+          style="width: 100%; height: 100%; left: 0px; top: 0px; margin: 0px; padding: 0px; position: absolute;"
+        />
+        <div
+          style="width: 50%; height: 50%; left: 50%; top: 50%; margin: 0px; padding: 0px; position: absolute;"
         >
           <div
-            style={
-              Object {
-                "backgroundColor": "transparent",
-                "height": 0,
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": 0,
-              }
-            }
+            style="width: 100%; height: 100%; left: 0px; top: 0px; margin: 0px; padding: 0px; position: absolute;"
           >
             <div
-              style={
-                Object {
-                  "color": "white",
-                  "fontSize": "21px",
-                }
-              }
+              style="width: 0px; height: 0px; left: 0px; top: 0px; background-color: transparent; position: absolute;"
             >
-              <i
-                aria-hidden="true"
-                className="fa fa-map-marker"
-              />
+              <div
+                style="color: white; font-size: 21px;"
+              >
+                <i
+                  aria-hidden="true"
+                  class="fa fa-map-marker"
+                />
+              </div>
             </div>
           </div>
         </div>

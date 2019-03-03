@@ -1,13 +1,11 @@
-import renderer from "react-test-renderer";
-import React from "react";
-import WeatherSearch from "../WeatherSearch";
+import { render } from 'react-testing-library';
+import React from 'react';
 
-describe("Weather Widget Snapshot", () => {
-  test("renders", () => {
-    const component = renderer.create(
-      <WeatherSearch onFetchWeather={jest.fn()} />
-    );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+import WeatherSearch from '../WeatherSearch';
+
+describe('Weather Widget Snapshot', () => {
+  it('renders a weather widget', () => {
+    const { container } = render(<WeatherSearch onFetchWeather={jest.fn()} />);
+    expect(container).toMatchSnapshot();
   });
 });

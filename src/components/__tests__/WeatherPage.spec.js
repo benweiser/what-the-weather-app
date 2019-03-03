@@ -1,11 +1,11 @@
-import renderer from "react-test-renderer";
-import React from "react";
-import WeatherPage from "../WeatherPage";
+import { render } from 'react-testing-library';
+import React from 'react';
+import WeatherPage from '../WeatherPage';
 
-describe("Weather Page Component", () => {
-  test("renders", () => {
-    const component = renderer.create(<WeatherPage />);
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+describe('Weather Page Component', () => {
+  test('should render a weather page', () => {
+    const { container } = render(<WeatherPage />);
+
+    expect(container).toMatchSnapshot();
   });
 });
