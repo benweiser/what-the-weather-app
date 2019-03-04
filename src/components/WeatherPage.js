@@ -37,13 +37,19 @@ export const weatherMap = location => {
 class WeatherPage extends React.Component {
   state = {
     data: {},
+    error: false,
     fetching: false
   };
 
-  onFetchWeather = async location => {
+  handleFetchCurrentWeather = async location => {
     this.setState({ fetching: true });
 
     const weatherData = await weatherMap(location);
+
+    if (!weatherData) {
+      this.setState({ error: true, fetching: false });
+      return;
+    }
 
     const {
       data: { coord }
@@ -57,6 +63,7 @@ class WeatherPage extends React.Component {
     this.setState({
       currentPhoto: getRandomFlickrPhoto(photoData),
       data: weatherData.data,
+      error: false,
       fetching: false,
       searchMethod: location.searchMethod,
       photos: photoData
@@ -64,24 +71,19 @@ class WeatherPage extends React.Component {
   };
 
   render() {
-    const { data, currentPhoto, searchMethod } = this.state;
-
-    if (!data) {
-      return null;
-    }
+    const { data, error, fetching, currentPhoto, searchMethod } = this.state;
 
     return (
       <StyledWeatherSearchWrapper background={currentPhoto}>
         <Paper elevation={1} className={StyledWeatherStats}>
           <WeatherSearch
             className={StyledWeatherSearch}
-            onFetchWeather={this.onFetchWeather}
+            onFetchWeather={this.handleFetchCurrentWeather}
             searchMethod={searchMethod}
           />
-          {this.state.fetching ? (
-            <Loader />
-          ) : (
-            data.main && <WeatherStats data={data} />
+          {fetching ? <Loader /> : data.main && <WeatherStats data={data} />}
+          {error && !fetching && (
+            <div data-testid="error-text">An error occured</div>
           )}
         </Paper>
       </StyledWeatherSearchWrapper>
