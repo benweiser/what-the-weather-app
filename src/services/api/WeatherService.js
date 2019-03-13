@@ -1,10 +1,10 @@
 import { getCachedAjax } from "./request";
-import apiKey from "../../apiKey";
+import { openWeatherAPIKey } from "../../apiKey";
 
 export const API_CONFIG = {
   baseURL: "//api.openweathermap.org/data/2.5",
   params: {
-    appid: apiKey,
+    appid: openWeatherAPIKey,
     units: "imperial"
   },
   timeout: 1000
