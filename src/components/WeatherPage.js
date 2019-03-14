@@ -7,6 +7,17 @@ import Loader from "./Loader";
 import Paper from "@material-ui/core/Paper";
 import { getRandomFlickrPhoto } from "../services/api/FlickrService";
 
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.addEventListener("load", () => resolve(img));
+    img.addEventListener("error", err => reject(err));
+    img.src = src;
+    img.removeEventListener("load", () => resolve(img));
+    img.removeEventListener("error", err => reject(err));
+  });
+}
+
 const StyledWeatherStats = css`
   padding: 32px;
   max-width: 700px;
@@ -60,8 +71,10 @@ class WeatherPage extends React.Component {
       weatherData.data.name
     );
 
+    const photo = await loadImage(getRandomFlickrPhoto(photoData));
+
     this.setState({
-      currentPhoto: getRandomFlickrPhoto(photoData),
+      currentPhoto: photo.src,
       data: weatherData.data,
       error: false,
       fetching: false,
