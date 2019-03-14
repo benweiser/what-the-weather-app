@@ -1,11 +1,11 @@
-import { getCachedAjax } from './request';
-import apiKey from '../../apiKey';
+import { getCachedAjax } from "./request";
+import { openWeatherAPIKey } from "../../apiKey";
 
 export const API_CONFIG = {
-  baseURL: '//api.openweathermap.org/data/2.5',
+  baseURL: "//api.openweathermap.org/data/2.5",
   params: {
-    appid: apiKey,
-    units: 'imperial'
+    appid: openWeatherAPIKey,
+    units: "imperial"
   },
   timeout: 1000
 };
@@ -14,24 +14,21 @@ export const API_CONFIG = {
  * Gets the current weather
  * @param {string} query - the query param for making this api request
  */
-const getWeather = query => {
-  return Promise.resolve(
-    getCachedAjax(`/weather?${query}`, API_CONFIG, 'weather')
-    // getAjax(`/weather?${query}`, API_CONFIG, "weather")
-  );
-};
+const getCurrentWeather = query =>
+  getCachedAjax(`/weather?${query}`, API_CONFIG, "weather");
 
 /**
  *
  * @param {string} city
  */
-export const getWeatherByCity = city => getWeather(`q=${city}`);
+export const getWeatherByCity = city => getCurrentWeather(`q=${city}`);
 
 /**
  *
  * @param {string} zipCode
  */
-export const getWeatherByZipCode = zipCode => getWeather(`zip=${zipCode},us`);
+export const getWeatherByZipCode = zipCode =>
+  getCurrentWeather(`zip=${zipCode},us`);
 
 /**
  *
@@ -39,4 +36,4 @@ export const getWeatherByZipCode = zipCode => getWeather(`zip=${zipCode},us`);
  * @param {number} lon
  */
 export const getWeatherByCoords = (lat, lon) =>
-  getWeather(`lat=${lat}&lon=${lon}`);
+  getCurrentWeather(`lat=${lat}&lon=${lon}`);

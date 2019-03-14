@@ -147,6 +147,7 @@ exports[`Weather Widget Snapshot renders a weather widget 1`] = `
         </div>
         <button
           class="MuiButtonBase-root-22 MuiButton-root-93 MuiButton-contained-104 MuiButton-containedPrimary-105 MuiButton-raised-107 MuiButton-raisedPrimary-108"
+          data-testid="search-button"
           tabindex="0"
           type="submit"
         >

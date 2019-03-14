@@ -2,7 +2,9 @@
 
 exports[`Weather Stats renders 1`] = `
 <div>
-  <div>
+  <div
+    data-testid="WeatherStats"
+  >
     <h3
       class="MuiTypography-root-1 MuiTypography-headline-6 MuiTypography-gutterBottom-18"
     >
