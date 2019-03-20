@@ -1,21 +1,21 @@
-import React from "react";
-import styled, { css } from "react-emotion";
-import API from "../services/api";
-import { loadImage } from "../utils/image";
-import WeatherSearch from "./WeatherSearch";
-import WeatherStats from "./WeatherStats";
-import Loader from "./Loader";
-import Paper from "@material-ui/core/Paper";
-import { getRandomFlickrPhoto } from "../services/api/FlickrService";
+import React from 'react';
+import styled, { css } from 'react-emotion';
+import API from '../services/api';
+import { loadImage } from '../utils/image';
+import WeatherSearch from './WeatherSearch';
+import WeatherStats from './WeatherStats';
+import Loader from './Loader';
+import Paper from '@material-ui/core/Paper';
+import { getRandomFlickrPhoto } from '../services/api/FlickrService';
 
 function loadImage(src) {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.addEventListener("load", () => resolve(img));
-    img.addEventListener("error", err => reject(err));
+    img.addEventListener('load', () => resolve(img));
+    img.addEventListener('error', err => reject(err));
     img.src = src;
-    img.removeEventListener("load", () => resolve(img));
-    img.removeEventListener("error", err => reject(err));
+    img.removeEventListener('load', () => resolve(img));
+    img.removeEventListener('error', err => reject(err));
   });
 }
 
@@ -25,7 +25,7 @@ const StyledWeatherStats = css`
   margin: 0 auto;
 `;
 
-const StyledWeatherSearchWrapper = styled("div")`
+const StyledWeatherSearchWrapper = styled('div')`
   background: url(${props => props.background});
   background-repeat: no-repeat;
   background-size: cover;
@@ -47,7 +47,7 @@ export const weatherMap = location => {
 };
 
 const defaultState = {
-  currentPhoto: "",
+  currentPhoto: '',
   data: {},
   error: false,
   fetching: false
