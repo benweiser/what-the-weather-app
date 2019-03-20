@@ -1,8 +1,8 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
-import CurrentWeatherIcon from "./CurrentWeatherIcon";
-import GoogleMap from "./GoogleMap";
+import CurrentWeatherIcon from './CurrentWeatherIcon';
+import GoogleMap from './GoogleMap';
 
 const WeatherStats = ({ data }) => {
   if (!data) {
@@ -31,7 +31,7 @@ const WeatherStats = ({ data }) => {
       <p>Today's High: {temp_max}</p>
       <p>Current Humidity: {humidity}</p>
       <div>
-        Current Conditions:{" "}
+        Current Conditions:{' '}
         {weather.map(condition => (
           <div key={`${condition.main}`}>{condition.main}</div>
         ))}

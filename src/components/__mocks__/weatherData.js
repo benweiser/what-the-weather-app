@@ -1,5 +1,5 @@
 export const mockWeatherData = {
-  name: "Test",
+  name: 'Test',
   coord: {
     lat: 23,
     lon: 32
@@ -7,7 +7,7 @@ export const mockWeatherData = {
   weather: [
     {
       id: 500,
-      description: "Test description"
+      description: 'Test description'
     }
   ],
   main: {
@@ -17,8 +17,8 @@ export const mockWeatherData = {
     temp_max: 79
   },
   sys: {
-    sunrise: "5:00",
-    sunset: "8:00"
+    sunrise: '5:00',
+    sunset: '8:00'
   },
   wind: {
     speed: 43,

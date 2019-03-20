@@ -1,11 +1,11 @@
-import { getCachedAjax } from "./request";
-import { openWeatherAPIKey } from "../../apiKey";
+import { getCachedAjax } from './request';
+import { openWeatherAPIKey } from '../../apiKey';
 
 export const API_CONFIG = {
-  baseURL: "//api.openweathermap.org/data/2.5",
+  baseURL: '//api.openweathermap.org/data/2.5',
   params: {
     appid: openWeatherAPIKey,
-    units: "imperial"
+    units: 'imperial'
   },
   timeout: 1000
 };
@@ -15,7 +15,7 @@ export const API_CONFIG = {
  * @param {string} query - the query param for making this api request
  */
 const getCurrentWeather = query =>
-  getCachedAjax(`/weather?${query}`, API_CONFIG, "weather");
+  getCachedAjax(`/weather?${query}`, API_CONFIG, 'weather');
 
 /**
  *

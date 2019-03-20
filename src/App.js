@@ -1,8 +1,8 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-import WeatherPage from "./components/WeatherPage";
+import WeatherPage from './components/WeatherPage';
 
 const App = () => (
   <div className="App">

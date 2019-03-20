@@ -1,9 +1,9 @@
-import { PropTypes } from "prop-types";
-import React from "react";
-import Button from "@material-ui/core/Button";
-import { css } from "emotion";
-import SearchOptions from "./SearchOptions";
-import WeatherSearchInput from "./WeatherSearchInput";
+import { PropTypes } from 'prop-types';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import { css } from 'emotion';
+import SearchOptions from './SearchOptions';
+import WeatherSearchInput from './WeatherSearchInput';
 
 const StyledSearchFormDiv = css`
   display: flex;
@@ -11,8 +11,8 @@ const StyledSearchFormDiv = css`
 
 class WeatherSearch extends React.Component {
   state = {
-    searchMethod: "city",
-    value: ""
+    searchMethod: 'city',
+    value: ''
   };
 
   handleChange = e => {
