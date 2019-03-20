@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "react-emotion";
 import API from "../services/api";
+import { loadImage } from "../utils/image";
 import WeatherSearch from "./WeatherSearch";
 import WeatherStats from "./WeatherStats";
 import Loader from "./Loader";
@@ -45,6 +46,12 @@ export const weatherMap = location => {
   return searchType[location.searchMethod](location.value);
 };
 
+const defaultState = {
+  currentPhoto: "",
+  data: {},
+  error: false,
+  fetching: false
+};
 class WeatherPage extends React.Component {
   state = {
     data: {},
