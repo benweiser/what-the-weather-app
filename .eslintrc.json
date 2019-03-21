@@ -11,6 +11,25 @@
     "jest": true
   },
   "rules": {
+    "curly": "warn",
+    "no-empty-function": "error",
+    "no-lone-blocks": "error",
+    "no-script-url": "error",
+    "no-useless-constructor": "error",
+    "no-useless-concat": "error",
+    "guard-for-in": "error",
+    "no-use-before-define": "error",
+    "no-shadow": "error",
+    "no-eq-null": "error",
+    "no-shadow-restricted-names": "error",
+    "no-new-wrappers": "error",
+    "no-duplicate-imports": "error",
+    "no-useless-rename": "error",
+    "prefer-const": "error",
+    "no-self-compare": "error",
+    "yoda": "warn",
+    "max": 4,
+    "max-depth": "error",
     "react/jsx-filename-extension": [
       1,
       {
