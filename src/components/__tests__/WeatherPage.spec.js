@@ -1,9 +1,4 @@
-import {
-  cleanup,
-  fireEvent,
-  render,
-  waitForElement
-} from 'react-testing-library';
+import { fireEvent, render, waitForElement } from 'react-testing-library';
 import React from 'react';
 import mockAxios from 'axios';
 
@@ -40,12 +35,17 @@ describe('Weather Page Component', () => {
     const { getByTestId } = setup();
     fireEvent.click(getByTestId('search-button'));
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
-    expect(mockAxios.get).toHaveBeenCalledWith('/weather?q=', API_CONFIG);
-    mockAxios.get.mockImplementationOnce(() =>
+    await expect(mockAxios.get).toHaveBeenCalledWith('/weather?q=', API_CONFIG);
+    await mockAxios.get.mockImplementationOnce(() =>
       Promise.resolve({
         data: {
           photos: {
-            photo: 'test123'
+            photo: {
+              farm: 'test123',
+              id: 123455,
+              secret: 'e3sk3ksls9',
+              server: 3432
+            }
           }
         }
       })

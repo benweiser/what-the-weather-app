@@ -1,4 +1,4 @@
-import { fireEvent, render } from 'react-testing-library';
+import { render } from 'react-testing-library';
 import React from 'react';
 
 import WeatherSearch from '../WeatherSearch';

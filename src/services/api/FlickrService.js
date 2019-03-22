@@ -28,15 +28,15 @@ export const getFlickrPhotosByCoords = async (lat, lon, text = '') => {
   );
 
   const photosKey = 'data.photos.photo';
-  return get(response, photosKey, undefined);
+  return get(response, photosKey, []);
 };
 
 export const getRandomFlickrPhoto = photos => {
-  if (!photos && !photos.length) {
+  if (!photos || !Array.isArray(photos)) {
     return null;
   }
 
-  const photo = photos[Math.floor(Math.random() * photos.length - 1)];
+  const photo = photos[Math.floor(Math.random() * photos.length)];
 
   const { farm, secret, server, id } = photo;
   return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`;

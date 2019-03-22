@@ -19,6 +19,7 @@
     "no-useless-concat": "error",
     "guard-for-in": "error",
     "no-use-before-define": "error",
+    "no-undef": "off",
     "no-shadow": "error",
     "no-eq-null": "error",
     "no-shadow-restricted-names": "error",

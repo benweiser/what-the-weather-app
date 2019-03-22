@@ -26,7 +26,7 @@ describe('Flickr Service', () => {
 
   it('should get a random photo from flickr', () => {
     const mockMath = Object.create(global.Math);
-    mockMath.random = () => 1;
+    mockMath.random = () => 2;
     global.Math = mockMath;
 
     const mockPhotoData = [
