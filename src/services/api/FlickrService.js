@@ -1,22 +1,22 @@
-import get from "lodash.get";
-import { getCachedAjax } from "./request";
-import { flickrAPIKey } from "../../apiKey";
+import get from 'lodash.get';
+import { getCachedAjax } from './request';
+import { flickrAPIKey } from '../../apiKey';
 
 // https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=da5f1fa111df65355aeee8f26beef6f7&text=Cleveland&sort=popular&is_commons=&format=json&nojsoncallback=1
 // http://api.flickr.com/services/rest/?method=flickr.photos.search&text=Los%20Angeles&api_key=dbad3997fb3628fcb3b10832c56a7a2b&format=json&text=Cleveland
 
 export const API_CONFIG = {
-  baseURL: "https://api.flickr.com/services/rest",
+  baseURL: 'https://api.flickr.com/services/rest',
   params: {
     api_key: flickrAPIKey,
-    format: "json",
+    format: 'json',
     nojsoncallback: 1,
-    sort: "popular"
+    sort: 'popular'
   },
   timeout: 2000
 };
 
-export const getFlickrPhotosByCoords = async (lat, lon, text = "") => {
+export const getFlickrPhotosByCoords = async (lat, lon, text = '') => {
   if (!lat || !lon) {
     return;
   }
@@ -24,19 +24,19 @@ export const getFlickrPhotosByCoords = async (lat, lon, text = "") => {
   const response = await getCachedAjax(
     `?method=flickr.photos.search&lat=${lat}&lon=${lon}&text=${text} skyline`,
     API_CONFIG,
-    "photo"
+    'photo'
   );
 
-  const photosKey = "data.photos.photo";
-  return get(response, photosKey, undefined);
+  const photosKey = 'data.photos.photo';
+  return get(response, photosKey, []);
 };
 
 export const getRandomFlickrPhoto = photos => {
-  if (!photos && !photos.length) {
+  if (!photos || !Array.isArray(photos)) {
     return null;
   }
 
-  const photo = photos[Math.floor(Math.random() * photos.length - 1)];
+  const photo = photos[0];
 
   const { farm, secret, server, id } = photo;
   return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`;
