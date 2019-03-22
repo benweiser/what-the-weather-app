@@ -13,6 +13,7 @@ describe('Weather Page Component', () => {
   beforeEach(() => {
     consoleErrorSpy = jest
       .spyOn(global.console, 'error')
+      // eslint-disable-next-line
       .mockImplementationOnce(() => {});
   });
 

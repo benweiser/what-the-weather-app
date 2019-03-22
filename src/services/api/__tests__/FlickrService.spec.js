@@ -24,11 +24,7 @@ describe('Flickr Service', () => {
     expect(mockAxios.get).toHaveBeenCalledTimes(0);
   });
 
-  it('should get a random photo from flickr', () => {
-    const mockMath = Object.create(global.Math);
-    mockMath.random = () => 2;
-    global.Math = mockMath;
-
+  it('should get a random photo from flickr', async done => {
     const mockPhotoData = [
       {
         farm: 8,
@@ -54,7 +50,8 @@ describe('Flickr Service', () => {
       }
     ];
     expect(getRandomFlickrPhoto(mockPhotoData)).toEqual(
-      'https://farm7.staticflickr.com/7870/39780251182_9d6062cb2e_b.jpg'
+      'https://farm8.staticflickr.com/7871/39780251183_9d6062cb2d_b.jpg'
     );
+    done();
   });
 });
