@@ -1,26 +1,41 @@
-import { PropTypes } from 'prop-types';
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { css } from 'emotion';
 import SearchOptions from './SearchOptions';
 import WeatherSearchInput from './WeatherSearchInput';
 
+export type SearchType = 'city' | 'zip' | 'coords';
+
+export interface WeatherSearchProps {
+  className?: string;
+  onFetchWeather: (state: WeatherSearchState) => void;
+  searchMethod: SearchType;
+}
+
+export interface WeatherSearchState {
+  value: string;
+  searchMethod: SearchType;
+}
+
 const StyledSearchFormDiv = css`
   display: flex;
 `;
 
-class WeatherSearch extends React.Component {
-  state = {
+class WeatherSearch extends React.Component<
+  WeatherSearchProps,
+  WeatherSearchState
+> {
+  state: WeatherSearchState = {
     searchMethod: 'city',
     value: ''
   };
 
-  handleChange = e => {
+  handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    this.setState({ value: e.target.value });
+    this.setState({ value: e.currentTarget.value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e: React.MouseEvent<any>) => {
     e.preventDefault();
     const { onFetchWeather } = this.props;
     if (onFetchWeather) {
@@ -28,7 +43,7 @@ class WeatherSearch extends React.Component {
     }
   };
 
-  onSearchTypeSelect = type => {
+  onSearchTypeSelect = (type: SearchType) => {
     this.setState({ searchMethod: type });
   };
 
@@ -62,9 +77,5 @@ class WeatherSearch extends React.Component {
     );
   }
 }
-
-WeatherSearch.propTypes = {
-  onFetchWeather: PropTypes.func.isRequired
-};
 
 export default WeatherSearch;

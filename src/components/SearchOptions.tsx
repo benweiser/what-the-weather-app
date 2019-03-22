@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'react-emotion';
-import { PropTypes } from 'prop-types';
 import { FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
+import { RadioGroupProps } from '@material-ui/core/RadioGroup';
+import { SearchType } from './WeatherSearch';
+
+export interface SearchOptionsProps {
+  onSearchTypeSelect: (value: SearchType) => void;
+  selectedOption: string;
+}
 
 const StyledSearchByRadioGroup = styled(RadioGroup)`
   && {
@@ -10,10 +16,10 @@ const StyledSearchByRadioGroup = styled(RadioGroup)`
   }
 `;
 
-class SearchOptions extends React.PureComponent {
-  handleChange = e => {
+class SearchOptions extends React.PureComponent<SearchOptionsProps> {
+  handleChange = (e: React.ChangeEvent<RadioGroupProps>) => {
     e.preventDefault();
-    this.props.onSearchTypeSelect(e.target.value);
+    this.props.onSearchTypeSelect(e.target.value as SearchType);
   };
 
   render() {
@@ -48,9 +54,5 @@ class SearchOptions extends React.PureComponent {
     );
   }
 }
-
-SearchOptions.propTypes = {
-  onSearchTypeSelect: PropTypes.func.isRequired
-};
 
 export default SearchOptions;

@@ -1,12 +1,23 @@
 import React from 'react';
 
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact, { ChangeEventValue } from 'google-map-react';
 
-const EventMarker = ({ children }) => (
+export interface MapProps extends ChangeEventValue {}
+
+export interface EventMarkerInterface {
+  marker: number;
+  key: number;
+  lat: number;
+  lng: number;
+  showBalloon: boolean;
+  children?: React.ReactChild;
+}
+
+const EventMarker = ({ children }: EventMarkerInterface) => (
   <div style={{ color: 'white', fontSize: '21px' }}>{children}</div>
 );
 
-const Map = props => {
+const Map: React.SFC<MapProps> = props => {
   const { center } = props;
 
   return (

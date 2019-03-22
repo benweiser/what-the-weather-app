@@ -1,7 +1,11 @@
 import React from 'react';
 import Icon from './Icon';
 
-export const weather = {
+export interface CurrentWeatherIconProps {
+  currentConditions: number;
+}
+
+export const weather: { [key: number]: string } = {
   200: 'wi-thunderstorm',
   201: 'wi-thunderstorm',
   202: 'wi-thunderstorm',
@@ -24,7 +28,7 @@ export const weather = {
   804: 'wi-cloudy'
 };
 
-const CurrentWeatherIcon = ({ currentConditions }) => {
+const CurrentWeatherIcon = ({ currentConditions }: CurrentWeatherIconProps) => {
   return (
     <Icon
       data-testid="CurrentWeatherIcon"
@@ -35,7 +39,3 @@ const CurrentWeatherIcon = ({ currentConditions }) => {
 };
 
 export default CurrentWeatherIcon;
-
-CurrentWeatherIcon.propTypes = {
-  //  name: PropTypes.number.isRequired
-};
