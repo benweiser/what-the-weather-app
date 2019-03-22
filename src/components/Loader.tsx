@@ -1,6 +1,10 @@
 import * as React from 'react';
 import styled from 'react-emotion';
 
+export interface LoaderProps {
+  className?: string;
+}
+
 const StyledSpinner = styled('div')`
 margin: 40px auto;
 width: 40px;
@@ -73,7 +77,7 @@ position: relative;
           transform: scale(1); }
 `;
 
-const Loader = ({ className }) => (
+const Loader = ({ className }: LoaderProps) => (
   <StyledSpinner className={className}>
     <div className="sk-circle1 sk-child" />
     <div className="sk-circle2 sk-child" />
