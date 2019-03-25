@@ -1,6 +1,7 @@
 import React from 'react';
 
 import GoogleMapReact, { ChangeEventValue } from 'google-map-react';
+import { googleMapAPIKey } from '../apiKey';
 
 export interface MapProps extends ChangeEventValue {}
 
@@ -23,7 +24,7 @@ const Map: React.SFC<MapProps> = props => {
   return (
     <div style={{ height: '400px', width: '100%' }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyCjNFYH29kyE1Vwl-b3VvlrtBsQ8nV995A' }}
+        bootstrapURLKeys={{ key: googleMapAPIKey }}
         defaultCenter={center}
         defaultZoom={props.zoom}
         options={{
