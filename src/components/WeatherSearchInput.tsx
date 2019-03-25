@@ -1,6 +1,13 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { css } from 'emotion';
+import { SearchType } from './WeatherSearch';
+
+export interface WeatherSearchInputProps {
+  onChange: (e: React.SyntheticEvent<any, Event>) => void;
+  type: SearchType;
+  value: string;
+}
 
 const StyledTextField = css`
   flex: 1;
@@ -19,7 +26,11 @@ const inputLabelsByType = {
   }
 };
 
-const WeatherSearchInput = ({ onChange, type, value }) => {
+const WeatherSearchInput = ({
+  onChange,
+  type,
+  value
+}: WeatherSearchInputProps) => {
   const inputLabel = inputLabelsByType[type];
   const { label } = inputLabel;
   return (
