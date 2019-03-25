@@ -9,7 +9,7 @@ export type SearchType = 'city' | 'zip' | 'coords';
 export interface WeatherSearchProps {
   className?: string;
   onFetchWeather: (state: WeatherSearchState) => void;
-  searchMethod: SearchType;
+  searchMethod?: SearchType;
 }
 
 export interface WeatherSearchState {
