@@ -7,11 +7,10 @@ import WeatherStats from './WeatherStats';
 import Loader from './Loader';
 import Paper from '@material-ui/core/Paper';
 import { getRandomFlickrPhoto } from '../services/api/FlickrService';
+import { DailyWeatherStats } from '../services/api/WeatherService';
 
 interface WeatherPageState {
-  data?: {
-    main: any;
-  };
+  data?: DailyWeatherStats;
   error?: boolean;
   fetching?: boolean;
   currentPhoto: string;
@@ -51,9 +50,7 @@ export const weatherMap = (location: WeatherSearchState) => {
 class WeatherPage extends React.Component<WeatherPageProps, WeatherPageState> {
   state: WeatherPageState = {
     currentPhoto: '',
-    data: {
-      main: undefined
-    },
+    data: undefined,
     error: false,
     fetching: false,
     searchMethod: 'city'

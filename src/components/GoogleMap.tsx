@@ -3,14 +3,14 @@ import React from 'react';
 import GoogleMapReact, { ChangeEventValue } from 'google-map-react';
 import { googleMapAPIKey } from '../apiKey';
 
-export interface MapProps extends ChangeEventValue {}
+export interface MapProps extends Partial<ChangeEventValue> {}
 
 export interface EventMarkerInterface {
-  marker: number;
-  key: number;
+  marker?: number;
+  key?: number;
   lat: number;
   lng: number;
-  showBalloon: boolean;
+  showBalloon?: boolean;
   children?: React.ReactChild;
 }
 
@@ -18,7 +18,7 @@ const EventMarker = ({ children }: EventMarkerInterface) => (
   <div style={{ color: 'white', fontSize: '21px' }}>{children}</div>
 );
 
-const Map: React.SFC<MapProps> = props => {
+const Map = (props: MapProps) => {
   const { center } = props;
 
   return (
@@ -119,15 +119,17 @@ const Map: React.SFC<MapProps> = props => {
           ]
         }}
       >
-        <EventMarker
-          marker={444}
-          key={4}
-          lat={center.lat}
-          lng={center.lng}
-          showBalloon
-        >
-          <i className="fa fa-map-marker" aria-hidden="true" />
-        </EventMarker>
+        {center && (
+          <EventMarker
+            marker={444}
+            key={4}
+            lat={center.lat}
+            lng={center.lng}
+            showBalloon
+          >
+            <i className="fa fa-map-marker" aria-hidden="true" />
+          </EventMarker>
+        )}
       </GoogleMapReact>
     </div>
   );

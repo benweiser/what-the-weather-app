@@ -3,18 +3,23 @@ import Typography from '@material-ui/core/Typography';
 
 import CurrentWeatherIcon from './CurrentWeatherIcon';
 import GoogleMap from './GoogleMap';
+import { DailyWeatherStats } from '../services/api/WeatherService';
 
-const WeatherStats = ({ data }) => {
+export interface WeatherStatsProps {
+  data: DailyWeatherStats;
+}
+
+const WeatherStats = ({ data }: WeatherStatsProps) => {
   if (!data) {
     return null;
   }
   const {
-    coord: { lat, lon } = {},
-    main: { temp, temp_min, temp_max, humidity } = {},
+    coord: { lat, lon },
+    main: { temp, temp_min, temp_max, humidity },
     name,
-    sys: { sunset, sunrise } = {},
+    sys: { sunset, sunrise },
     weather,
-    wind: { deg, speed } = {}
+    wind: { deg, speed }
   } = data;
 
   return (
