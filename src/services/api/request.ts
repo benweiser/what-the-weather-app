@@ -1,24 +1,21 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-// Note in a production app we'd need something more robust, redux-persist with localforage is a nice option
+export interface FetchDataResponse {
+  data?: unknown;
+  query?: string;
+  timestamp: number;
+}
 
 const EXPIRE_TIME = 600000; // 10 minutes
 const SESSION_PREFIX = 'bw';
 
-/**
- *
- * @param {number} expireTime - The number of milliseconds to cache the response in sessionStorage
- * @param {object} response - A cached response to grab a timestamp from
- */
-export const isExpired = (expireTime, response) =>
+export const isExpired = (expireTime: number, response: FetchDataResponse) =>
   new Date().getTime() - response.timestamp > expireTime;
 
-/**
- *
- * @param {string} query - The query string for our request
- * @param {object} config - A configuration object for our ajax request
- */
-export const getAjax = async (query, config) => {
+export const fetchData = async (
+  query: string,
+  config: AxiosRequestConfig
+): Promise<FetchDataResponse | void> => {
   try {
     const { data } = await axios.get(encodeURI(query), config);
     const response = {
@@ -28,19 +25,19 @@ export const getAjax = async (query, config) => {
     };
     return response;
   } catch (error) {
-    console.error('getAjax method failed', error);
+    console.error('fetchData method failed', error);
   }
 };
 
 /**
  * Gets data from session storage or makes a new ajax request if data isn't found in
  * storage to ensure we're not making extraneous calls
- *
- * @param {string} query - The query string for our request
- * @param {object} config - An axios configuration object
- * @param {string} storageId - A unique storage id
  */
-export const getCachedAjax = (query, config, storageId) => {
+export const getCachedData = (
+  query: string,
+  config: AxiosRequestConfig,
+  storageId: string
+): Promise<FetchDataResponse | void> => {
   const cacheId = `${SESSION_PREFIX}.${storageId}`;
 
   const cachedResponse = sessionStorage.getItem(cacheId);
@@ -55,7 +52,7 @@ export const getCachedAjax = (query, config, storageId) => {
       return response;
     }
   }
-  return getAjax(query, config).then(response => {
+  return fetchData(query, config).then(response => {
     if (response) {
       sessionStorage.setItem(cacheId, JSON.stringify(response));
     }

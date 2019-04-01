@@ -1,9 +1,9 @@
 import mockAxios from 'axios';
 import { MockDateHelper } from '../../../testHelpers';
-import { isExpired, getAjax, getCachedAjax } from '../request';
+import { isExpired, fetchData, getCachedData } from '../request';
 
 describe('request', () => {
-  let consoleErrorSpy;
+  let consoleErrorSpy: any;
   beforeEach(() => {
     jest.clearAllMocks();
 
@@ -18,7 +18,7 @@ describe('request', () => {
   });
 
   it('should return a response with our data, query, and timestamp', () => {
-    getAjax('/test', {}, 'test');
+    fetchData('/test', {});
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
   });
 
@@ -40,10 +40,10 @@ describe('request', () => {
     expect(isExpired(6000000, response)).toBe(false);
   });
 
-  it('should call a getCachedAjax function and set the response in sessionStorage', done => {
+  it('should call a getCachedData function and set the response in sessionStorage', done => {
     expect.assertions(6);
     MockDateHelper.mockDate('2018-01-01T12:06:00z');
-    getCachedAjax('/test', {}, 'test').then(response => {
+    getCachedData('/test', {}, 'test').then(response => {
       expect(response).toEqual({
         data: {},
         query: '/test',
@@ -63,10 +63,10 @@ describe('request', () => {
     });
   });
 
-  it('should call a getAjax function', done => {
+  it('should call a fetchData function', done => {
     expect.assertions(4);
     MockDateHelper.mockDate('2018-01-01T12:06:00z');
-    getAjax('/test', {}).then(response => {
+    fetchData('/test', {}).then(response => {
       expect(response).toEqual({
         data: {},
         query: '/test',
@@ -80,18 +80,20 @@ describe('request', () => {
     });
   });
 
-  it('should catch errors from getAjax and send them to console', done => {
+  it('should catch errors from fetchData and send them to console', done => {
     expect.assertions(5);
     MockDateHelper.mockDate('2018-01-01T12:06:00z');
-    mockAxios.get.mockImplementation(() => Promise.reject('test rejection'));
+    (mockAxios as any).get.mockImplementation(() =>
+      Promise.reject('test rejection')
+    );
 
-    getAjax('/test', {}).then(response => {
+    fetchData('/test', {}).then(response => {
       expect(response).toBeUndefined();
       expect(mockAxios.get).toHaveBeenCalledWith('/test', {});
       expect(mockAxios.get).toHaveBeenCalledTimes(1);
       expect(consoleErrorSpy).toHaveBeenCalled();
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'getAjax method failed',
+        'fetchData method failed',
         'test rejection'
       );
 

@@ -1,9 +1,9 @@
-import mockAxios from 'axios';
+import mockAxios, { AxiosRequestConfig } from 'axios';
 import API from '../../api';
 import { openWeatherAPIKey } from '../../../apiKey';
 
 describe('API', () => {
-  let mockConfig;
+  let mockConfig: AxiosRequestConfig;
 
   beforeEach(() => {
     jest.clearAllMocks();

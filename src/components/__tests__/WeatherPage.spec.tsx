@@ -9,7 +9,7 @@ import { API_CONFIG } from '../../services/api/WeatherService';
 const setup = () => render(<WeatherPage />);
 
 describe('Weather Page Component', () => {
-  let consoleErrorSpy;
+  let consoleErrorSpy: any;
   beforeEach(() => {
     consoleErrorSpy = jest
       .spyOn(global.console, 'error')
@@ -32,12 +32,14 @@ describe('Weather Page Component', () => {
         ...mockWeatherData
       }
     };
-    mockAxios.get.mockImplementationOnce(() => Promise.resolve(response));
+    (mockAxios as any).get.mockImplementationOnce(() =>
+      Promise.resolve(response)
+    );
     const { getByTestId } = setup();
     fireEvent.click(getByTestId('search-button'));
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     await expect(mockAxios.get).toHaveBeenCalledWith('/weather?q=', API_CONFIG);
-    await mockAxios.get.mockImplementationOnce(() =>
+    await (mockAxios as any).get.mockImplementationOnce(() =>
       Promise.resolve({
         data: {
           photos: {
@@ -62,7 +64,9 @@ describe('Weather Page Component', () => {
   });
 
   it('should handle errors on a failed search', async done => {
-    mockAxios.get.mockImplementation(() => Promise.reject('search failed'));
+    (mockAxios as any).get.mockImplementation(() =>
+      Promise.reject('search failed')
+    );
     const { getByTestId } = setup();
     fireEvent.click(getByTestId('search-button'));
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
@@ -70,7 +74,7 @@ describe('Weather Page Component', () => {
     const errorContent = await waitForElement(() => getByTestId('error-text'));
     expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
     expect(consoleErrorSpy).toHaveBeenCalledWith(
-      'getAjax method failed',
+      'fetchData method failed',
       'search failed'
     );
     expect(errorContent).toHaveTextContent('An error occured');

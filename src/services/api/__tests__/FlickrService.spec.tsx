@@ -3,7 +3,7 @@ import API from '../../api';
 import { API_CONFIG, getRandomFlickrPhoto } from '../FlickrService';
 
 describe('Flickr Service', () => {
-  let mockConfig;
+  let mockConfig: any;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -11,17 +11,12 @@ describe('Flickr Service', () => {
   });
 
   it('should get flickr photo by coords', () => {
-    API.getFlickrPhotosByCoords(36.1699, 115.1398, 'Las Vegas');
+    API.getFlickrPhotosByCoords('36.1699', '115.1398', 'Las Vegas');
     expect(mockAxios.get).toHaveBeenCalledTimes(1);
     expect(mockAxios.get).toHaveBeenCalledWith(
-      `?method=flickr.photos.search&lat=36.1699&lon=115.1398&text=Las%20Vegas%20skyline`,
+      `?method=flickr.photos.search&lat=36.1699&lon=115.1398&text=Las%20Vegas`,
       mockConfig
     );
-  });
-
-  it('should not call axios if lat or lon is not passed', () => {
-    API.getFlickrPhotosByCoords(123);
-    expect(mockAxios.get).toHaveBeenCalledTimes(0);
   });
 
   it('should get a random photo from flickr', async done => {
