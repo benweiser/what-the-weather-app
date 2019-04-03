@@ -3,10 +3,10 @@ import Typography from '@material-ui/core/Typography';
 
 import CurrentWeatherIcon from './CurrentWeatherIcon';
 import GoogleMap from './GoogleMap';
-import { DailyWeatherStats } from '../services/api/WeatherService';
+import { CurrentWeatherStats } from '../services/api/WeatherService';
 
 export interface WeatherStatsProps {
-  data: DailyWeatherStats;
+  data: CurrentWeatherStats;
 }
 
 const WeatherStats = ({ data }: WeatherStatsProps) => {
@@ -14,44 +14,58 @@ const WeatherStats = ({ data }: WeatherStatsProps) => {
     return null;
   }
   const {
-    coord: { lat, lon },
-    main: { temp, temp_min, temp_max, humidity },
-    name,
-    sys: { sunset, sunrise },
-    weather,
-    wind: { deg, speed }
+    currentConditions,
+    lat,
+    locationName,
+    lon,
+    sunsetTime,
+    sunriseTime,
+    temp,
+    tempMax,
+    tempMin,
+    windSpeed
   } = data;
 
   return (
     <div data-testid="WeatherStats">
-      <Typography variant="headline" component="h3" gutterBottom>
-        City: {name}
-      </Typography>
-      <CurrentWeatherIcon currentConditions={weather[0].id} />
-      <p>
-        Latitude: {lat}, Longitude: {lon}
-      </p>
-      <p>Current Temperature: {temp}</p>
-      <p>Today's Low: {temp_min}</p>
-      <p>Today's High: {temp_max}</p>
-      <p>Current Humidity: {humidity}</p>
-      <div>
-        Current Conditions:{' '}
-        {weather.map(condition => (
-          <div key={`${condition.main}`}>{condition.main}</div>
-        ))}
-      </div>
-      <p>Sunset Time: {sunset}</p>
-      <p>Sunrise Time: {sunrise}</p>
-      <p>Wind Speed: {speed}</p>
-      <p>Wind Degree: {deg}</p>
+      {locationName && (
+        <Typography variant="headline" component="h3" gutterBottom>
+          City: {locationName}
+        </Typography>
+      )}
+      {currentConditions && (
+        <CurrentWeatherIcon currentConditions={currentConditions[0].id} />
+      )}
 
-      <GoogleMap
-        center={{
-          lat,
-          lng: lon
-        }}
-      />
+      {lat && lon && (
+        <p>
+          Latitude: {lat}, Longitude: {lon}
+        </p>
+      )}
+
+      {temp && <p>Current Temperature: {temp}</p>}
+      {tempMin && <p>Today's Low: {tempMin}</p>}
+      {tempMax && <p>Today's High: {tempMax}</p>}
+      {currentConditions && (
+        <div>
+          Current Conditions:{' '}
+          {currentConditions.map(condition => (
+            <div key={`${condition.main}`}>{condition.main}</div>
+          ))}
+        </div>
+      )}
+      {sunsetTime && <p>Sunset Time: {sunsetTime}</p>}
+      {sunriseTime && <p>Sunrise Time: {sunriseTime}</p>}
+      {windSpeed && <p>Wind Speed: {windSpeed}</p>}
+
+      {lat && lon && (
+        <GoogleMap
+          center={{
+            lat,
+            lng: lon
+          }}
+        />
+      )}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import {
+  getCurrentWeather,
   getWeatherByCity,
   getWeatherByCoords,
   getWeatherByZipCode
@@ -6,10 +7,11 @@ import {
 import { getFlickrPhotosByCoords } from './FlickrService';
 
 const API = {
-  getWeatherByZipCode,
+  getCurrentWeather,
+  getFlickrPhotosByCoords,
   getWeatherByCoords,
   getWeatherByCity,
-  getFlickrPhotosByCoords
+  getWeatherByZipCode
 };
 
 export default API;

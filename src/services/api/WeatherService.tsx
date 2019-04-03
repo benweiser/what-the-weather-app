@@ -1,30 +1,26 @@
-import { getCachedData, FetchDataResponse } from './request';
+import get from 'lodash.get';
+
+import { fetchCachedData, FetchDataResponse } from './request';
 import { openWeatherAPIKey } from '../../apiKey';
 
-export interface DailyWeatherStats {
-  coord: {
-    lat: number;
-    lon: number;
-  };
-  main: {
-    temp: string;
-    temp_min: string;
-    temp_max: string;
-    humidity: string;
-  };
-  name: string;
-  sys: {
-    sunset: string;
-    sunrise: string;
-  };
-  weather: ReadonlyArray<{
-    id: number;
-    main: string;
-  }>;
-  wind: {
-    deg: string;
-    speed: string;
-  };
+export interface WeatherCondition {
+  description: string;
+  icon: string;
+  id: number;
+  main: string;
+}
+
+export interface CurrentWeatherStats {
+  lat?: number;
+  lon?: number;
+  currentConditions?: ReadonlyArray<WeatherCondition>;
+  locationName?: string;
+  sunsetTime?: string;
+  sunriseTime?: string;
+  temp?: number;
+  tempMax?: number;
+  tempMin?: number;
+  windSpeed?: number;
 }
 
 export const API_CONFIG = {
@@ -36,8 +32,51 @@ export const API_CONFIG = {
   timeout: 1000
 };
 
-const getCurrentWeather = (query: string) =>
-  getCachedData(`/weather?${query}`, API_CONFIG, 'weather');
+export const serializeCurrentWeatherData = (
+  data: unknown
+): CurrentWeatherStats => {
+  const currentWeather = get(data, 'weather');
+  const mainTemp = get(data, 'main');
+  const sunPosition = get(data, 'sys');
+  const wind = get(data, 'wind');
+  return {
+    lat: get(data, 'coord.lat'),
+    lon: get(data, 'coord.lon'),
+    currentConditions: Array.isArray(currentWeather)
+      ? currentWeather.map(weatherCondition => {
+          return {
+            main: get(weatherCondition, 'main'),
+            description: get(weatherCondition, 'description'),
+            icon: get(weatherCondition, 'icon'),
+            id: get(weatherCondition, 'id')
+          };
+        })
+      : undefined,
+    locationName: get(data, 'name'),
+    temp: get(mainTemp, 'temp'),
+    tempMin: get(mainTemp, 'temp_min'),
+    tempMax: get(mainTemp, 'temp_max'),
+    sunriseTime: get(sunPosition, 'sunrise'),
+    sunsetTime: get(sunPosition, 'sunset'),
+    windSpeed: get(wind, 'speed')
+  };
+};
+
+export const getCurrentWeather = async (
+  query: string
+): Promise<CurrentWeatherStats | undefined> => {
+  const currentWeather = await fetchCachedData(
+    `/weather?${query}`,
+    API_CONFIG,
+    'weather'
+  );
+
+  if (!currentWeather) {
+    return;
+  }
+
+  return serializeCurrentWeatherData(currentWeather.data || {});
+};
 
 export const getWeatherByCity = (city: string) =>
   getCurrentWeather(`q=${city}`);
@@ -45,5 +84,5 @@ export const getWeatherByCity = (city: string) =>
 export const getWeatherByZipCode = (zipCode: string) =>
   getCurrentWeather(`zip=${zipCode},us`);
 
-export const getWeatherByCoords = (lat: string, lon: string) =>
+export const getWeatherByCoords = (lat: number, lon: number) =>
   getCurrentWeather(`lat=${lat}&lon=${lon}`);
