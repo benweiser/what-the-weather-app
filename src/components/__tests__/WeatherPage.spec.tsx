@@ -71,8 +71,8 @@ describe('Weather Page Component', () => {
     done();
   });
 
-  xit('should handle errors on a failed search', async done => {
-    (mockAxios as any).get.mockImplementation(() =>
+  it('should handle errors on a failed search', async done => {
+    (mockAxios as any).request.mockImplementation(() =>
       Promise.reject('search failed')
     );
     const { getByTestId } = setup();

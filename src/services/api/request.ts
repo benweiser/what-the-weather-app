@@ -24,8 +24,8 @@ export const fetchData = async (
     });
 
     const response = {
-      data: data,
-      query: query,
+      data,
+      query,
       timestamp: new Date().getTime()
     };
     return response;
