@@ -1,4 +1,4 @@
-export function loadImage(src) {
+export function loadImage(src: string) {
   if (!src) {
     return '';
   }
