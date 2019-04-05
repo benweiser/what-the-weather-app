@@ -33,14 +33,12 @@ exports[`Weather Stats renders 1`] = `
       Today's High: 
       79
     </p>
-    <p>
-      Current Humidity: 
-      40
-    </p>
     <div>
       Current Conditions:
        
-      <div />
+      <div>
+        Test
+      </div>
     </div>
     <p>
       Sunset Time: 
@@ -52,10 +50,6 @@ exports[`Weather Stats renders 1`] = `
     </p>
     <p>
       Wind Speed: 
-      43
-    </p>
-    <p>
-      Wind Degree: 
       43
     </p>
     <div

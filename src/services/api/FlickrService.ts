@@ -1,9 +1,9 @@
 import get from 'lodash.get';
-import { getCachedData } from './request';
+import { fetchCachedData } from './request';
 import { flickrAPIKey } from '../../apiKey';
 
 export const API_CONFIG = {
-  baseURL: '//api.flickr.com/services/rest',
+  baseURL: 'https://api.flickr.com/services/rest',
   params: {
     api_key: flickrAPIKey,
     format: 'json',
@@ -14,11 +14,14 @@ export const API_CONFIG = {
 };
 
 export const getFlickrPhotosByCoords = async (
-  lat: string,
-  lon: string,
+  lat?: number,
+  lon?: number,
   text: string = ''
 ) => {
-  const response = await getCachedData(
+  if (!lat && !lon) {
+    return [];
+  }
+  const response = await fetchCachedData(
     `?method=flickr.photos.search&lat=${lat}&lon=${lon}&text=${text}`,
     API_CONFIG,
     'photo'

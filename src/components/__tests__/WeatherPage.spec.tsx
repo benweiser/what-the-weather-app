@@ -3,7 +3,10 @@ import React from 'react';
 import mockAxios from 'axios';
 
 import WeatherPage from '../WeatherPage';
-import { mockWeatherData } from '../__mocks__/weatherData';
+import {
+  mockRawWeatherData,
+  mockCurrentWeatherStats
+} from '../__mocks__/weatherData';
 import { API_CONFIG } from '../../services/api/WeatherService';
 
 const setup = () => render(<WeatherPage />);
@@ -27,19 +30,24 @@ describe('Weather Page Component', () => {
   });
 
   it('should perform a weather search', async done => {
-    const response = {
-      data: {
-        ...mockWeatherData
-      }
-    };
-    (mockAxios as any).get.mockImplementationOnce(() =>
-      Promise.resolve(response)
+    await (mockAxios as any).request.mockImplementationOnce(() =>
+      Promise.resolve({
+        data: mockRawWeatherData
+      })
     );
+
     const { getByTestId } = setup();
     fireEvent.click(getByTestId('search-button'));
-    expect(mockAxios.get).toHaveBeenCalledTimes(1);
-    await expect(mockAxios.get).toHaveBeenCalledWith('/weather?q=', API_CONFIG);
-    await (mockAxios as any).get.mockImplementationOnce(() =>
+
+    expect(mockAxios.request).toHaveBeenCalledTimes(1);
+
+    expect(mockAxios.request).toHaveBeenCalledWith({
+      ...API_CONFIG,
+      method: 'get',
+      url: '/weather?q='
+    });
+
+    await (mockAxios as any).request.mockImplementationOnce(() =>
       Promise.resolve({
         data: {
           photos: {
@@ -53,7 +61,7 @@ describe('Weather Page Component', () => {
         }
       })
     );
-    expect(mockAxios.get).toHaveBeenCalledTimes(1);
+    expect(mockAxios.request).toHaveBeenCalledTimes(1);
 
     const weatherStatsNode = await waitForElement(() =>
       getByTestId('WeatherStats')
@@ -64,17 +72,17 @@ describe('Weather Page Component', () => {
   });
 
   it('should handle errors on a failed search', async done => {
-    (mockAxios as any).get.mockImplementation(() =>
+    (mockAxios as any).request.mockImplementation(() =>
       Promise.reject('search failed')
     );
     const { getByTestId } = setup();
     fireEvent.click(getByTestId('search-button'));
-    expect(mockAxios.get).toHaveBeenCalledTimes(1);
+    expect(mockAxios.request).toHaveBeenCalledTimes(1);
 
     const errorContent = await waitForElement(() => getByTestId('error-text'));
     expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
     expect(consoleErrorSpy).toHaveBeenCalledWith(
-      'fetchData method failed',
+      'Could not fetchData',
       'search failed'
     );
     expect(errorContent).toHaveTextContent('An error occured');

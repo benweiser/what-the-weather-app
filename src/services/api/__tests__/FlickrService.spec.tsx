@@ -11,12 +11,13 @@ describe('Flickr Service', () => {
   });
 
   it('should get flickr photo by coords', () => {
-    API.getFlickrPhotosByCoords('36.1699', '115.1398', 'Las Vegas');
-    expect(mockAxios.get).toHaveBeenCalledTimes(1);
-    expect(mockAxios.get).toHaveBeenCalledWith(
-      `?method=flickr.photos.search&lat=36.1699&lon=115.1398&text=Las%20Vegas`,
-      mockConfig
-    );
+    API.getFlickrPhotosByCoords(36.1699, 115.1398, 'Las Vegas');
+    expect(mockAxios.request).toHaveBeenCalledTimes(1);
+    expect(mockAxios.request).toHaveBeenCalledWith({
+      ...mockConfig,
+      method: 'get',
+      url: `?method=flickr.photos.search&lat=36.1699&lon=115.1398&text=Las%20Vegas`
+    });
   });
 
   it('should get a random photo from flickr', async done => {

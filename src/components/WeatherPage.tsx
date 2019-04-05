@@ -7,10 +7,10 @@ import WeatherStats from './WeatherStats';
 import Loader from './Loader';
 import Paper from '@material-ui/core/Paper';
 import { getRandomFlickrPhoto } from '../services/api/FlickrService';
-import { DailyWeatherStats } from '../services/api/WeatherService';
+import { CurrentWeatherStats } from '../services/api/WeatherService';
 
 interface WeatherPageState {
-  data?: DailyWeatherStats;
+  data?: CurrentWeatherStats;
   error?: boolean;
   fetching?: boolean;
   currentPhoto: string;
@@ -38,7 +38,9 @@ const StyledWeatherSearch = css`
   margin-bottom: 32px;
 `;
 
-export const weatherMap = (location: WeatherSearchState) => {
+export const weatherMap = (
+  location: WeatherSearchState
+): CurrentWeatherStats => {
   const searchType: { [key: string]: (value: string) => any } = {
     city: (value: string) => API.getWeatherByCity(value),
     // coords: (value: string) => API.getWeatherByCoords(value),
@@ -63,23 +65,18 @@ class WeatherPage extends React.Component<WeatherPageProps, WeatherPageState> {
 
     if (!weatherData) {
       this.setState({ error: true, fetching: false });
-      return;
+      return null;
     }
 
-    const {
-      data: { coord }
-    } = weatherData;
-    const photoData = await API.getFlickrPhotosByCoords(
-      coord.lat,
-      coord.lon,
-      weatherData.data.name
-    );
+    const { lat, lon, locationName } = weatherData;
+
+    const photoData = await API.getFlickrPhotosByCoords(lat, lon, locationName);
 
     const photo = await loadImage(getRandomFlickrPhoto(photoData));
 
     this.setState({
       currentPhoto: photo.src,
-      data: weatherData.data,
+      data: weatherData,
       error: false,
       fetching: false,
       searchMethod: location.searchMethod,
@@ -98,11 +95,7 @@ class WeatherPage extends React.Component<WeatherPageProps, WeatherPageState> {
             onFetchWeather={this.handleFetchCurrentWeather}
             searchMethod={searchMethod}
           />
-          {fetching ? (
-            <Loader />
-          ) : (
-            data && data.main && <WeatherStats data={data} />
-          )}
+          {fetching ? <Loader /> : data && <WeatherStats data={data} />}
           {error && !fetching && (
             <div data-testid="error-text">An error occured</div>
           )}

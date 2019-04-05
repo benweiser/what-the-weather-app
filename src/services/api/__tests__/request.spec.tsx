@@ -1,6 +1,6 @@
 import mockAxios from 'axios';
 import { MockDateHelper } from '../../../testHelpers';
-import { isExpired, fetchData, getCachedData } from '../request';
+import { isExpired, fetchData, fetchCachedData } from '../request';
 
 describe('request', () => {
   let consoleErrorSpy: any;
@@ -19,7 +19,7 @@ describe('request', () => {
 
   it('should return a response with our data, query, and timestamp', () => {
     fetchData('/test', {});
-    expect(mockAxios.get).toHaveBeenCalledTimes(1);
+    expect(mockAxios.request).toHaveBeenCalledTimes(1);
   });
 
   it('should return true if the timestamp is expired', () => {
@@ -43,15 +43,18 @@ describe('request', () => {
   it('should call a getCachedData function and set the response in sessionStorage', done => {
     expect.assertions(6);
     MockDateHelper.mockDate('2018-01-01T12:06:00z');
-    getCachedData('/test', {}, 'test').then(response => {
+    fetchCachedData('/test', {}, 'test').then(response => {
       expect(response).toEqual({
         data: {},
         query: '/test',
         timestamp: 1514808360000
       });
       expect(sessionStorage.getItem).toHaveBeenCalledWith('bw.test');
-      expect(mockAxios.get).toHaveBeenCalledWith('/test', {});
-      expect(mockAxios.get).toHaveBeenCalledTimes(1);
+      expect(mockAxios.request).toHaveBeenCalledWith({
+        method: 'get',
+        url: '/test'
+      });
+      expect(mockAxios.request).toHaveBeenCalledTimes(1);
       expect(sessionStorage.setItem).toHaveBeenCalledWith(
         'bw.test',
         `{\"data\":{},\"query\":\"/test\",\"timestamp\":1514808360000}`
@@ -72,8 +75,11 @@ describe('request', () => {
         query: '/test',
         timestamp: 1514808360000
       });
-      expect(mockAxios.get).toHaveBeenCalledWith('/test', {});
-      expect(mockAxios.get).toHaveBeenCalledTimes(1);
+      expect(mockAxios.request).toHaveBeenCalledWith({
+        method: 'get',
+        url: '/test'
+      });
+      expect(mockAxios.request).toHaveBeenCalledTimes(1);
       expect(consoleErrorSpy).not.toHaveBeenCalled();
 
       done();
@@ -83,17 +89,20 @@ describe('request', () => {
   it('should catch errors from fetchData and send them to console', done => {
     expect.assertions(5);
     MockDateHelper.mockDate('2018-01-01T12:06:00z');
-    (mockAxios as any).get.mockImplementation(() =>
+    (mockAxios as any).request.mockImplementation(() =>
       Promise.reject('test rejection')
     );
 
     fetchData('/test', {}).then(response => {
       expect(response).toBeUndefined();
-      expect(mockAxios.get).toHaveBeenCalledWith('/test', {});
-      expect(mockAxios.get).toHaveBeenCalledTimes(1);
+      expect(mockAxios.request).toHaveBeenCalledWith({
+        method: 'get',
+        url: '/test'
+      });
+      expect(mockAxios.request).toHaveBeenCalledTimes(1);
       expect(consoleErrorSpy).toHaveBeenCalled();
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        'fetchData method failed',
+        'Could not fetchData',
         'test rejection'
       );
 

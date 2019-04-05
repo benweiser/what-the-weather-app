@@ -15,17 +15,22 @@ export const isExpired = (expireTime: number, response: FetchDataResponse) =>
 export const fetchData = async (
   query: string,
   config: AxiosRequestConfig
-): Promise<FetchDataResponse | void> => {
+): Promise<FetchDataResponse | undefined> => {
   try {
-    const { data } = await axios.get(encodeURI(query), config);
+    const { data } = await axios.request({
+      method: 'get',
+      url: encodeURI(query),
+      ...config
+    });
+
     const response = {
       data,
       query,
       timestamp: new Date().getTime()
     };
     return response;
-  } catch (error) {
-    console.error('fetchData method failed', error);
+  } catch (e) {
+    console.error('Could not fetchData', e);
   }
 };
 
@@ -33,11 +38,11 @@ export const fetchData = async (
  * Gets data from session storage or makes a new ajax request if data isn't found in
  * storage to ensure we're not making extraneous calls
  */
-export const getCachedData = (
+export const fetchCachedData = async (
   query: string,
   config: AxiosRequestConfig,
   storageId: string
-): Promise<FetchDataResponse | void> => {
+): Promise<FetchDataResponse | undefined> => {
   const cacheId = `${SESSION_PREFIX}.${storageId}`;
 
   const cachedResponse = sessionStorage.getItem(cacheId);
@@ -52,10 +57,10 @@ export const getCachedData = (
       return response;
     }
   }
-  return fetchData(query, config).then(response => {
-    if (response) {
-      sessionStorage.setItem(cacheId, JSON.stringify(response));
-    }
+
+  const response = await fetchData(query, config);
+  if (response) {
+    sessionStorage.setItem(cacheId, JSON.stringify(response));
     return response;
-  });
+  }
 };
