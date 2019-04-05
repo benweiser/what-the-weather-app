@@ -1,7 +1,4 @@
-export function loadImage(src: string) {
-  if (!src) {
-    return '';
-  }
+export function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.addEventListener('load', () => resolve(img));
