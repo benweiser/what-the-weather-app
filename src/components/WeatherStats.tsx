@@ -44,8 +44,8 @@ const WeatherStats = ({ data }: WeatherStatsProps) => {
       )}
 
       {temp && <p>Current Temperature: {temp}</p>}
-      {tempMin && <p>Today's Low: {tempMin}</p>}
-      {tempMax && <p>Today's High: {tempMax}</p>}
+      {tempMin && <p>Today&#39;s Low: {tempMin}</p>}
+      {tempMax && <p>Today&#39;s High: {tempMax}</p>}
       {currentConditions && (
         <div>
           Current Conditions:{' '}

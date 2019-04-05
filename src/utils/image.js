@@ -1,13 +1,13 @@
 export function loadImage(src) {
   if (!src) {
-    return "";
+    return '';
   }
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.addEventListener("load", () => resolve(img));
-    img.addEventListener("error", err => reject(err));
+    img.addEventListener('load', () => resolve(img));
+    img.addEventListener('error', err => reject(err));
     img.src = src;
-    img.removeEventListener("load", () => resolve(img));
-    img.removeEventListener("error", err => reject(err));
+    img.removeEventListener('load', () => resolve(img));
+    img.removeEventListener('error', err => reject(err));
   });
 }

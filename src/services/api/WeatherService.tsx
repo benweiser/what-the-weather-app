@@ -1,6 +1,6 @@
 import get from 'lodash.get';
 
-import { fetchCachedData, FetchDataResponse } from './request';
+import { fetchCachedData } from './request';
 import { openWeatherAPIKey } from '../../apiKey';
 
 export interface WeatherCondition {
@@ -43,14 +43,16 @@ export const serializeCurrentWeatherData = (
     lat: get(data, 'coord.lat'),
     lon: get(data, 'coord.lon'),
     currentConditions: Array.isArray(currentWeather)
-      ? currentWeather.map(weatherCondition => {
-          return {
-            main: get(weatherCondition, 'main'),
-            description: get(weatherCondition, 'description'),
-            icon: get(weatherCondition, 'icon'),
-            id: get(weatherCondition, 'id')
-          };
-        })
+      ? currentWeather.map(
+          (weatherCondition): WeatherCondition => {
+            return {
+              main: get(weatherCondition, 'main'),
+              description: get(weatherCondition, 'description'),
+              icon: get(weatherCondition, 'icon'),
+              id: get(weatherCondition, 'id')
+            };
+          }
+        )
       : undefined,
     locationName: get(data, 'name'),
     temp: get(mainTemp, 'temp'),

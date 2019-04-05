@@ -2,9 +2,10 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint"
   ],
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "env": {
     "browser": true,
     "jasmine": true,
@@ -20,6 +21,7 @@
     "guard-for-in": "error",
     "no-use-before-define": "error",
     "no-undef": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "no-shadow": "error",
     "no-eq-null": "error",
     "no-shadow-restricted-names": "error",
@@ -34,9 +36,14 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js"]
+        "extensions": [".tsx"]
       }
     ],
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/camelcase": 0,
     "prettier/prettier": ["error", { "singleQuote": true }]
   },
   "settings": {
@@ -45,7 +52,7 @@
       "version": "detect"
     }
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
