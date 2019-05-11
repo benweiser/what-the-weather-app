@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import GoogleMapReact, { ChangeEventValue } from 'google-map-react';
 import { googleMapAPIKey } from '../apiKey';
@@ -139,4 +139,4 @@ Map.defaultProps = {
   zoom: 12
 };
 
-export default Map;
+export default memo(Map);

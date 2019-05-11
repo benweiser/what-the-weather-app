@@ -1,13 +1,16 @@
-import { render } from 'react-testing-library';
-import React from 'react';
+import { render, waitForElement } from 'react-testing-library';
+import React, { Suspense } from 'react';
 import WeatherStats from '../WeatherStats';
 import { mockCurrentWeatherStats } from '../__mocks__/weatherData';
 
 describe('Weather Stats', () => {
-  it('renders', () => {
+  it('renders', async () => {
     const { container } = render(
-      <WeatherStats data={mockCurrentWeatherStats} />
+      <Suspense fallback="...">
+        <WeatherStats data={mockCurrentWeatherStats} />
+      </Suspense>
     );
-    expect(container).toMatchSnapshot();
+    const lazyElement = await waitForElement(() => container);
+    expect(lazyElement).toMatchSnapshot();
   });
 });

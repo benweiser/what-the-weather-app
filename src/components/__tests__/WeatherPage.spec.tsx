@@ -3,10 +3,7 @@ import React from 'react';
 import mockAxios from 'axios';
 
 import WeatherPage from '../WeatherPage';
-import {
-  mockRawWeatherData,
-  mockCurrentWeatherStats
-} from '../__mocks__/weatherData';
+import { mockRawWeatherData } from '../__mocks__/weatherData';
 import { API_CONFIG } from '../../services/api/WeatherService';
 
 const setup = () => render(<WeatherPage />);
@@ -80,7 +77,7 @@ describe('Weather Page Component', () => {
     expect(mockAxios.request).toHaveBeenCalledTimes(1);
 
     const errorContent = await waitForElement(() => getByTestId('error-text'));
-    expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+    expect(consoleErrorSpy).toHaveBeenCalledTimes(2);
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       'Could not fetchData',
       'search failed'

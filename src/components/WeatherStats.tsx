@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo, Suspense } from 'react';
 import Typography from '@material-ui/core/Typography';
 
 import CurrentWeatherIcon from './CurrentWeatherIcon';
-import GoogleMap from './GoogleMap';
 import { CurrentWeatherStats } from '../services/api/WeatherService';
+import GoogleMap from './GoogleMap';
 
 export interface WeatherStatsProps {
   data: CurrentWeatherStats;
@@ -13,6 +13,7 @@ const WeatherStats = ({ data }: WeatherStatsProps) => {
   if (!data) {
     return null;
   }
+
   const {
     currentConditions,
     lat,

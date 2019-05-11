@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, Suspense } from 'react';
 import styled, { css } from 'react-emotion';
 import API from '../services/api';
 import { loadImage } from '../utils/image';
@@ -17,8 +17,6 @@ interface WeatherPageState {
   searchMethod: SearchType;
   photos?: ReadonlyArray<any>;
 }
-
-interface WeatherPageProps {}
 
 const StyledWeatherStats = css`
   padding: 32px;
@@ -49,22 +47,18 @@ export const weatherMap = (
   return searchType[location.searchMethod](location.value);
 };
 
-class WeatherPage extends React.Component<WeatherPageProps, WeatherPageState> {
-  state: WeatherPageState = {
+const WeatherPage = () => {
+  const [state, setState] = useState<WeatherPageState>({
     currentPhoto: '',
     data: undefined,
     error: false,
-    fetching: false,
     searchMethod: 'city'
-  };
-
-  handleFetchCurrentWeather = async (location: WeatherSearchState) => {
-    this.setState({ fetching: true });
-
+  });
+  const handleFetchCurrentWeather = async (location: WeatherSearchState) => {
     const weatherData = await weatherMap(location);
 
     if (!weatherData) {
-      this.setState({ error: true, fetching: false });
+      setState({ ...state, data: undefined, currentPhoto: '', error: true });
       return null;
     }
 
@@ -74,35 +68,32 @@ class WeatherPage extends React.Component<WeatherPageProps, WeatherPageState> {
 
     const photo = await loadImage(getRandomFlickrPhoto(photoData));
 
-    this.setState({
+    setState({
       currentPhoto: photo.src,
       data: weatherData,
       error: false,
-      fetching: false,
       searchMethod: location.searchMethod,
       photos: photoData
     });
   };
 
-  render() {
-    const { data, error, fetching, currentPhoto, searchMethod } = this.state;
+  const { data, error, currentPhoto, searchMethod } = state;
 
-    return (
-      <StyledWeatherSearchWrapper background={currentPhoto}>
-        <Paper elevation={1} className={StyledWeatherStats}>
-          <WeatherSearch
-            className={StyledWeatherSearch}
-            onFetchWeather={this.handleFetchCurrentWeather}
-            searchMethod={searchMethod}
-          />
-          {fetching ? <Loader /> : data && <WeatherStats data={data} />}
-          {error && !fetching && (
-            <div data-testid="error-text">An error occured</div>
-          )}
-        </Paper>
-      </StyledWeatherSearchWrapper>
-    );
-  }
-}
+  return (
+    <StyledWeatherSearchWrapper background={currentPhoto}>
+      <Paper elevation={1} className={StyledWeatherStats}>
+        <WeatherSearch
+          className={StyledWeatherSearch}
+          onFetchWeather={handleFetchCurrentWeather}
+          searchMethod={searchMethod}
+        />
+        <Suspense fallback={<Loader />}>
+          {data && <WeatherStats data={data} />}
+        </Suspense>
+        {error && <div data-testid="error-text">An error occured</div>}
+      </Paper>
+    </StyledWeatherSearchWrapper>
+  );
+};
 
 export default WeatherPage;

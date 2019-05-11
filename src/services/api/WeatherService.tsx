@@ -1,6 +1,6 @@
 import get from 'lodash.get';
 
-import { fetchCachedData, FetchDataResponse } from './request';
+import { fetchCachedData } from './request';
 import { openWeatherAPIKey } from '../../apiKey';
 
 export interface WeatherCondition {
@@ -11,16 +11,16 @@ export interface WeatherCondition {
 }
 
 export interface CurrentWeatherStats {
-  lat?: number;
-  lon?: number;
-  currentConditions?: ReadonlyArray<WeatherCondition>;
-  locationName?: string;
-  sunsetTime?: string;
-  sunriseTime?: string;
-  temp?: number;
-  tempMax?: number;
-  tempMin?: number;
-  windSpeed?: number;
+  lat: number;
+  lon: number;
+  currentConditions: ReadonlyArray<WeatherCondition>;
+  locationName: string;
+  sunsetTime: string;
+  sunriseTime: string;
+  temp: number;
+  tempMax: number;
+  tempMin: number;
+  windSpeed: number;
 }
 
 export const API_CONFIG = {
@@ -51,7 +51,7 @@ export const serializeCurrentWeatherData = (
             id: get(weatherCondition, 'id')
           };
         })
-      : undefined,
+      : [],
     locationName: get(data, 'name'),
     temp: get(mainTemp, 'temp'),
     tempMin: get(mainTemp, 'temp_min'),
