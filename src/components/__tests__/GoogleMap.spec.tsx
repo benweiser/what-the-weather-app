@@ -1,20 +1,18 @@
-import { render } from 'react-testing-library';
-import React, { Suspense } from 'react';
+import { render, waitForElement } from 'react-testing-library';
+import React from 'react';
 import GoogleMap from '../GoogleMap';
 
 describe('Google Map Component', () => {
-  it('should render a Google Map', () => {
+  it('should render a Google Map', async () => {
     const { container } = render(
-      <Suspense fallback="...">
-        <GoogleMap
-          center={{
-            lat: 323,
-            lng: 323
-          }}
-        />
-      </Suspense>
+      <GoogleMap
+        center={{
+          lat: 323,
+          lng: 323
+        }}
+      />
     );
-
-    expect(container).toMatchSnapshot();
+    const lazyElement = await waitForElement(() => container);
+    expect(lazyElement).toMatchSnapshot();
   });
 });
