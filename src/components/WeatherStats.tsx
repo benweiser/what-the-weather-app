@@ -1,4 +1,4 @@
-import React, { memo, Suspense } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
 import CurrentWeatherIcon from './CurrentWeatherIcon';

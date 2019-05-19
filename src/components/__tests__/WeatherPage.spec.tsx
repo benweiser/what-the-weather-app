@@ -5,11 +5,13 @@ import mockAxios from 'axios';
 import WeatherPage from '../WeatherPage';
 import { mockRawWeatherData } from '../__mocks__/weatherData';
 import { API_CONFIG } from '../../services/api/WeatherService';
+import * as Images from '../../utils/image';
 
 const setup = () => render(<WeatherPage />);
 
 describe('Weather Page Component', () => {
   let consoleErrorSpy: any;
+
   beforeEach(() => {
     consoleErrorSpy = jest
       .spyOn(global.console, 'error')
@@ -34,6 +36,12 @@ describe('Weather Page Component', () => {
     );
 
     const { getByTestId } = setup();
+    const searchInput = getByTestId('WeatherSearchInput-city').querySelector(
+      'input'
+    )!;
+
+    fireEvent.focus(searchInput);
+    fireEvent.change(searchInput, { target: { value: 'Las Vegas' } });
     fireEvent.click(getByTestId('search-button'));
 
     expect(mockAxios.request).toHaveBeenCalledTimes(1);
@@ -41,7 +49,7 @@ describe('Weather Page Component', () => {
     expect(mockAxios.request).toHaveBeenCalledWith({
       ...API_CONFIG,
       method: 'get',
-      url: '/weather?q='
+      url: '/weather?q=Las%20Vegas'
     });
 
     await (mockAxios as any).request.mockImplementationOnce(() =>
@@ -58,7 +66,12 @@ describe('Weather Page Component', () => {
         }
       })
     );
+
     expect(mockAxios.request).toHaveBeenCalledTimes(1);
+
+    jest
+      .spyOn(Images, 'loadImage')
+      .mockReturnValueOnce(Promise.resolve(new Image()));
 
     const weatherStatsNode = await waitForElement(() =>
       getByTestId('WeatherStats')
@@ -77,7 +90,7 @@ describe('Weather Page Component', () => {
     expect(mockAxios.request).toHaveBeenCalledTimes(1);
 
     const errorContent = await waitForElement(() => getByTestId('error-text'));
-    expect(consoleErrorSpy).toHaveBeenCalledTimes(2);
+    expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       'Could not fetchData',
       'search failed'
