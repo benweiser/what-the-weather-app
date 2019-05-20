@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, memo } from 'react';
 import styled, { css } from 'react-emotion';
 import API from '../services/api';
 import { loadImage } from '../utils/image';
@@ -11,14 +11,13 @@ import { CurrentWeatherStats } from '../services/api/WeatherService';
 
 interface WeatherPageState {
   data?: CurrentWeatherStats;
-  error?: boolean;
+  isError?: boolean;
+  isLoading?: boolean;
   fetching?: boolean;
   currentPhoto: string;
   searchMethod: SearchType;
   photos?: ReadonlyArray<any>;
 }
-
-interface WeatherPageProps {}
 
 const StyledWeatherStats = css`
   padding: 32px;
@@ -38,71 +37,74 @@ const StyledWeatherSearch = css`
   margin-bottom: 32px;
 `;
 
-export const weatherMap = (
-  location: WeatherSearchState
-): CurrentWeatherStats => {
-  const searchType: { [key: string]: (value: string) => any } = {
-    city: (value: string) => API.getWeatherByCity(value),
-    // coords: (value: string) => API.getWeatherByCoords(value),
-    zip: (value: string) => API.getWeatherByZipCode(value)
-  };
-  return searchType[location.searchMethod](location.value);
+const searchType: { [key: string]: (value: string) => any } = {
+  city: (value: string) => API.getWeatherByCity(value),
+  // coords: (value: string) => API.getWeatherByCoords(value),
+  zip: (value: string) => API.getWeatherByZipCode(value)
 };
 
-class WeatherPage extends React.Component<WeatherPageProps, WeatherPageState> {
-  state: WeatherPageState = {
+export const mapSearchTypeToRequest = (
+  state: WeatherSearchState
+): CurrentWeatherStats => {
+  const { searchMethod, value } = state;
+
+  return searchType[searchMethod](value);
+};
+
+const WeatherPage = () => {
+  const [state, setState] = useState<WeatherPageState>({
     currentPhoto: '',
     data: undefined,
-    error: false,
-    fetching: false,
+    isError: false,
+    isLoading: false,
     searchMethod: 'city'
-  };
-
-  handleFetchCurrentWeather = async (location: WeatherSearchState) => {
-    this.setState({ fetching: true });
-
-    const weatherData = await weatherMap(location);
+  });
+  const handleFetchCurrentWeather = async (location: WeatherSearchState) => {
+    setState({ ...state, isError: false, isLoading: true });
+    const weatherData = await mapSearchTypeToRequest(location);
 
     if (!weatherData) {
-      this.setState({ error: true, fetching: false });
+      setState({
+        ...state,
+        data: undefined,
+        currentPhoto: '',
+        isError: true,
+        isLoading: false
+      });
       return null;
     }
-
     const { lat, lon, locationName } = weatherData;
 
     const photoData = await API.getFlickrPhotosByCoords(lat, lon, locationName);
 
     const photo = await loadImage(getRandomFlickrPhoto(photoData));
 
-    this.setState({
+    setState({
       currentPhoto: photo.src,
       data: weatherData,
-      error: false,
-      fetching: false,
+      isError: false,
+      isLoading: false,
       searchMethod: location.searchMethod,
       photos: photoData
     });
   };
 
-  render() {
-    const { data, error, fetching, currentPhoto, searchMethod } = this.state;
+  const { data, isError, isLoading, currentPhoto, searchMethod } = state;
 
-    return (
-      <StyledWeatherSearchWrapper background={currentPhoto}>
-        <Paper elevation={1} className={StyledWeatherStats}>
-          <WeatherSearch
-            className={StyledWeatherSearch}
-            onFetchWeather={this.handleFetchCurrentWeather}
-            searchMethod={searchMethod}
-          />
-          {fetching ? <Loader /> : data && <WeatherStats data={data} />}
-          {error && !fetching && (
-            <div data-testid="error-text">An error occured</div>
-          )}
-        </Paper>
-      </StyledWeatherSearchWrapper>
-    );
-  }
-}
+  return (
+    <StyledWeatherSearchWrapper background={currentPhoto}>
+      <Paper elevation={1} className={StyledWeatherStats}>
+        <WeatherSearch
+          className={StyledWeatherSearch}
+          onFetchWeather={handleFetchCurrentWeather}
+          searchMethod={searchMethod}
+        />
+        {data && <WeatherStats data={data} />}
+        {isLoading && <Loader />}
+        {isError && <div data-testid="error-text">An error occured</div>}
+      </Paper>
+    </StyledWeatherSearchWrapper>
+  );
+};
 
-export default WeatherPage;
+export default memo(WeatherPage);

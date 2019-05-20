@@ -1,9 +1,9 @@
-import { render } from 'react-testing-library';
+import { render, waitForElement } from 'react-testing-library';
 import React from 'react';
 import GoogleMap from '../GoogleMap';
 
 describe('Google Map Component', () => {
-  it('should render a Google Map', () => {
+  it('should render a Google Map', async () => {
     const { container } = render(
       <GoogleMap
         center={{
@@ -12,7 +12,7 @@ describe('Google Map Component', () => {
         }}
       />
     );
-
-    expect(container).toMatchSnapshot();
+    const lazyElement = await waitForElement(() => container);
+    expect(lazyElement).toMatchSnapshot();
   });
 });
