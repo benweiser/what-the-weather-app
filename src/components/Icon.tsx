@@ -1,6 +1,6 @@
 import React from 'react';
+import 'styled-components/macro';
 import '../styles/icons/weather-icons.min.css';
-import styled from 'react-emotion';
 
 export interface IconProps {
   name: string;
@@ -14,12 +14,17 @@ const iconSizes: { [key: string]: string } = {
   xl: '64px'
 };
 
-const StyledIcon = styled('span')<{ size: string }>`
-  font-size: ${props => iconSizes[props.size] || props.size};
-`;
-
-const Icon = ({ name, ...props }: IconProps) => {
-  return <StyledIcon className={`wi ${name}`} {...props} />;
+const Icon = (props: IconProps) => {
+  const { name, size, ...remainingProps } = props;
+  return (
+    <span
+      className={`wi ${name}`}
+      css={`
+        font-size: ${iconSizes[size] || props.size};
+      `}
+      {...remainingProps}
+    />
+  );
 };
 
 export default Icon;

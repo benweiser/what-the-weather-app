@@ -11,16 +11,16 @@ export interface WeatherCondition {
 }
 
 export interface CurrentWeatherStats {
-  lat?: number;
-  lon?: number;
-  currentConditions?: ReadonlyArray<WeatherCondition>;
-  locationName?: string;
-  sunsetTime?: string;
-  sunriseTime?: string;
-  temp?: number;
-  tempMax?: number;
-  tempMin?: number;
-  windSpeed?: number;
+  lat: number;
+  lon: number;
+  currentConditions: ReadonlyArray<WeatherCondition>;
+  locationName: string;
+  sunsetTime: string;
+  sunriseTime: string;
+  temp: number;
+  tempMax: number;
+  tempMin: number;
+  windSpeed: number;
 }
 
 export const API_CONFIG = {
@@ -43,17 +43,15 @@ export const serializeCurrentWeatherData = (
     lat: get(data, 'coord.lat'),
     lon: get(data, 'coord.lon'),
     currentConditions: Array.isArray(currentWeather)
-      ? currentWeather.map(
-          (weatherCondition): WeatherCondition => {
-            return {
-              main: get(weatherCondition, 'main'),
-              description: get(weatherCondition, 'description'),
-              icon: get(weatherCondition, 'icon'),
-              id: get(weatherCondition, 'id')
-            };
-          }
-        )
-      : undefined,
+      ? currentWeather.map(weatherCondition => {
+          return {
+            main: get(weatherCondition, 'main'),
+            description: get(weatherCondition, 'description'),
+            icon: get(weatherCondition, 'icon'),
+            id: get(weatherCondition, 'id')
+          };
+        })
+      : [],
     locationName: get(data, 'name'),
     temp: get(mainTemp, 'temp'),
     tempMin: get(mainTemp, 'temp_min'),

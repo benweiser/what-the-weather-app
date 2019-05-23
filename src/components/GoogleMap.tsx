@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import GoogleMapReact, { ChangeEventValue } from 'google-map-react';
 import { googleMapAPIKey } from '../apiKey';
@@ -25,7 +25,7 @@ const Map = (props: MapProps) => {
     <div style={{ height: '400px', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: googleMapAPIKey }}
-        defaultCenter={center}
+        center={center}
         defaultZoom={props.zoom}
         options={{
           styles: [
@@ -139,4 +139,4 @@ Map.defaultProps = {
   zoom: 12
 };
 
-export default Map;
+export default memo(Map);
