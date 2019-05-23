@@ -10,7 +10,6 @@
     "lodash.get": "^4.4.2",
     "react": "16.9.0-alpha.0",
     "react-dom": "16.9.0-alpha.0",
-    "react-emotion": "^9.2.12",
     "react-scripts": "^3.0.1",
     "styled-components": "^4.2.0",
     "typescript": "^3.3.4000"
@@ -43,8 +42,8 @@
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.3.1",
     "jest-dom": "^3.2.2",
-    "jest-emotion": "^9.2.6",
     "jest-localstorage-mock": "^2.4.0",
+    "jest-styled-components": "^6.3.1",
     "lint-staged": "^8.1.5",
     "prettier": "^1.12.1",
     "react-testing-library": "^7.0.0",

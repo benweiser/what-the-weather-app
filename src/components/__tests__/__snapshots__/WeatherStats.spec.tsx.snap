@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Weather Stats renders 1`] = `
+.c0 {
+  font-size: 64px;
+}
+
 <div>
   <div
     data-testid="WeatherStats"
@@ -12,7 +16,7 @@ exports[`Weather Stats renders 1`] = `
       Test
     </h3>
     <span
-      class="wi wi-day-rain css-tez4ss"
+      class="wi wi-day-rain c0"
       data-testid="CurrentWeatherIcon"
     />
     <p>

@@ -1,9 +1,11 @@
 import React, { useState, memo } from 'react';
-import styled, { css } from 'react-emotion';
+import 'styled-components/macro';
+
 import API from '../services/api';
 import { loadImage } from '../utils/image';
 import WeatherSearch, { WeatherSearchState, SearchType } from './WeatherSearch';
 import WeatherStats from './WeatherStats';
+
 import Loader from './Loader';
 import Paper from '@material-ui/core/Paper';
 import { getRandomFlickrPhoto } from '../services/api/FlickrService';
@@ -18,24 +20,6 @@ interface WeatherPageState {
   searchMethod: SearchType;
   photos?: ReadonlyArray<any>;
 }
-
-const StyledWeatherStats = css`
-  padding: 32px;
-  max-width: 700px;
-  margin: 0 auto;
-`;
-
-const StyledWeatherSearchWrapper = styled('div')<{ background: string }>`
-  background: url(${props => props.background});
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 32px;
-  margin: 0 auto;
-`;
-
-const StyledWeatherSearch = css`
-  margin-bottom: 32px;
-`;
 
 const searchType: { [key: string]: (value: string) => any } = {
   city: (value: string) => API.getWeatherByCity(value),
@@ -80,7 +64,7 @@ const WeatherPage = () => {
     const photo = await loadImage(getRandomFlickrPhoto(photoData));
 
     setState({
-      currentPhoto: photo.src,
+      currentPhoto: photo ? photo.src : '',
       data: weatherData,
       isError: false,
       isLoading: false,
@@ -92,10 +76,24 @@ const WeatherPage = () => {
   const { data, isError, isLoading, currentPhoto, searchMethod } = state;
 
   return (
-    <StyledWeatherSearchWrapper background={currentPhoto}>
-      <Paper elevation={1} className={StyledWeatherStats}>
+    <div
+      css={`
+        background: url(${currentPhoto});
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 32px;
+        margin: 0 auto;
+      `}
+    >
+      <Paper
+        elevation={1}
+        css={`
+          padding: 32px;
+          max-width: 700px;
+          margin: 0 auto;
+        `}
+      >
         <WeatherSearch
-          className={StyledWeatherSearch}
           onFetchWeather={handleFetchCurrentWeather}
           searchMethod={searchMethod}
         />
@@ -103,7 +101,7 @@ const WeatherPage = () => {
         {isLoading && <Loader />}
         {isError && <div data-testid="error-text">An error occured</div>}
       </Paper>
-    </StyledWeatherSearchWrapper>
+    </div>
   );
 };
 

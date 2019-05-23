@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
-import { css } from 'emotion';
+
 import SearchOptions from './SearchOptions';
 import WeatherSearchInput from './WeatherSearchInput';
 
@@ -17,12 +17,13 @@ export interface WeatherSearchState {
   searchMethod: SearchType;
 }
 
-const StyledSearchFormDiv = css`
+/* const StyledSearchFormDiv = css`
   display: flex;
-`;
+`; */
 
 const WeatherSearch = (props: WeatherSearchProps) => {
   const { className } = props;
+
   const [state, setState] = useState<WeatherSearchState>({
     searchMethod: 'city',
     value: ''
@@ -48,7 +49,7 @@ const WeatherSearch = (props: WeatherSearchProps) => {
           }
           selectedOption={searchMethod as SearchType}
         />
-        <div className={StyledSearchFormDiv}>
+        <div>
           <WeatherSearchInput
             onChange={(e: React.FormEvent<HTMLInputElement>) =>
               setState({
