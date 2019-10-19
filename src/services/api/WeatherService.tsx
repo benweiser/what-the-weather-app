@@ -15,8 +15,8 @@ export interface CurrentWeatherStats {
   lon: number;
   currentConditions: ReadonlyArray<WeatherCondition>;
   locationName: string;
-  sunsetTime: string;
-  sunriseTime: string;
+  sunsetTime: number;
+  sunriseTime: number;
   temp: number;
   tempMax: number;
   tempMin: number;

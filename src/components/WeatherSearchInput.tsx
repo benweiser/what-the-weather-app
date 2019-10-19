@@ -4,7 +4,9 @@ import { css } from 'emotion';
 import { SearchType } from './WeatherSearch';
 
 export interface WeatherSearchInputProps {
-  onChange: (e: React.SyntheticEvent<any, Event>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   type: SearchType;
   value: string;
 }
@@ -28,6 +30,8 @@ const inputLabelsByType = {
 
 const WeatherSearchInput = ({
   onChange,
+  onKeyPress,
+  onFocus,
   type,
   value
 }: WeatherSearchInputProps) => {
@@ -39,6 +43,8 @@ const WeatherSearchInput = ({
       placeholder={label}
       className={StyledTextField}
       onChange={onChange}
+      onKeyPress={onKeyPress}
+      onFocus={onFocus}
       label={label}
       value={value}
       aria-label={label}

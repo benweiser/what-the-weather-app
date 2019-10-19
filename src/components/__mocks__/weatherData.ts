@@ -21,8 +21,8 @@ export const mockRawWeatherData = {
     temp_max: 79
   },
   sys: {
-    sunrise: '5:00',
-    sunset: '8:00'
+    sunrise: 1571500519351,
+    sunset: 1571500619351
   },
   wind: {
     speed: 43,
@@ -42,8 +42,8 @@ export const mockCurrentWeatherStats: CurrentWeatherStats = {
   lat: 23,
   locationName: 'Test',
   lon: 32,
-  sunriseTime: '5:00',
-  sunsetTime: '8:00',
+  sunriseTime: 1571500519351,
+  sunsetTime: 1571500619351,
   temp: 45,
   tempMax: 79,
   tempMin: 23,

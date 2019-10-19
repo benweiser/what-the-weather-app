@@ -1,3 +1,6 @@
+import 'styled-components/macro';
+import { fromUnixTime, format } from 'date-fns';
+
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
@@ -55,8 +58,12 @@ const WeatherStats = ({ data }: WeatherStatsProps) => {
           ))}
         </div>
       )}
-      {sunsetTime && <p>Sunset Time: {sunsetTime}</p>}
-      {sunriseTime && <p>Sunrise Time: {sunriseTime}</p>}
+      {sunsetTime && (
+        <p>Sunset Time: {format(fromUnixTime(sunsetTime), 'hh:mm aaaa')}</p>
+      )}
+      {sunriseTime && (
+        <p>Sunrise Time: {format(fromUnixTime(sunriseTime), 'hh:mm aaaa')}</p>
+      )}
       {windSpeed && <p>Wind Speed: {windSpeed}</p>}
 
       {lat && lon && (
