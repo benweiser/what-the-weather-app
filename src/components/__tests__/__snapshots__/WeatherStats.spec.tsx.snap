@@ -46,11 +46,11 @@ exports[`Weather Stats renders 1`] = `
     </div>
     <p>
       Sunset Time: 
-      8:00
+      05:49 a.m.
     </p>
     <p>
       Sunrise Time: 
-      5:00
+      02:02 a.m.
     </p>
     <p>
       Wind Speed: 

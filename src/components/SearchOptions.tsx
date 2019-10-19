@@ -1,5 +1,5 @@
+import 'styled-components/macro';
 import React from 'react';
-// import styled from 'react-emotion';
 import { FormControlLabel, RadioGroup, Radio } from '@material-ui/core';
 import { RadioGroupProps } from '@material-ui/core/RadioGroup';
 import { SearchType } from './WeatherSearch';
@@ -8,13 +8,6 @@ export interface SearchOptionsProps {
   onSearchTypeSelect: (value: SearchType) => void;
   selectedOption: string;
 }
-/*
-const StyledSearchByRadioGroup = styled(RadioGroup)`
-  && {
-    flex-direction: row;
-    margin-bottom: 16px;
-  }
-`; */
 
 const SearchOptions = (props: SearchOptionsProps) => {
   const { selectedOption } = props;
@@ -26,6 +19,12 @@ const SearchOptions = (props: SearchOptionsProps) => {
   return (
     <RadioGroup
       aria-label="Select zip, coordinates, or location to search"
+      css={`
+        && {
+          flex-direction: row;
+          margin-bottom: 16px;
+        }
+      `}
       name="searchby"
       onChange={handleChange}
       value={selectedOption}

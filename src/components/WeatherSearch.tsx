@@ -1,3 +1,4 @@
+import 'styled-components/macro';
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 
@@ -17,10 +18,6 @@ export interface WeatherSearchState {
   searchMethod: SearchType;
 }
 
-/* const StyledSearchFormDiv = css`
-  display: flex;
-`; */
-
 const WeatherSearch = (props: WeatherSearchProps) => {
   const { className } = props;
 
@@ -30,7 +27,12 @@ const WeatherSearch = (props: WeatherSearchProps) => {
   });
   const { searchMethod, value } = state;
   return (
-    <div className={className}>
+    <div
+      className={className}
+      css={`
+        margin-bottom: 48px;
+      `}
+    >
       <form
         onSubmit={(e: React.MouseEvent<any>) => {
           e.preventDefault();
@@ -47,10 +49,27 @@ const WeatherSearch = (props: WeatherSearchProps) => {
               searchMethod: type
             })
           }
-          selectedOption={searchMethod as SearchType}
+          selectedOption={searchMethod}
         />
-        <div>
+        <div
+          css={`
+            display: flex;
+          `}
+        >
           <WeatherSearchInput
+            onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+              if (state.value) {
+                setState({
+                  ...state,
+                  value: ''
+                });
+              }
+            }}
+            onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              if (e.key === 'Enter') {
+                (e.target as HTMLInputElement).blur();
+              }
+            }}
             onChange={(e: React.FormEvent<HTMLInputElement>) =>
               setState({
                 ...state,
@@ -66,7 +85,7 @@ const WeatherSearch = (props: WeatherSearchProps) => {
             variant="contained"
             type="submit"
           >
-            Get Weather
+            Get
           </Button>
         </div>
       </form>

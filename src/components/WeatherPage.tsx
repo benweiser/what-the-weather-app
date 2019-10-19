@@ -6,10 +6,11 @@ import { loadImage } from '../utils/image';
 import WeatherSearch, { WeatherSearchState, SearchType } from './WeatherSearch';
 import WeatherStats from './WeatherStats';
 
-import Loader from './Loader';
+// import Loader from './Loader';
 import Paper from '@material-ui/core/Paper';
 import { getRandomFlickrPhoto } from '../services/api/FlickrService';
 import { CurrentWeatherStats } from '../services/api/WeatherService';
+import Skeleton from './Skeleton';
 
 interface WeatherPageState {
   data?: CurrentWeatherStats;
@@ -71,6 +72,8 @@ const WeatherPage = () => {
       searchMethod: location.searchMethod,
       photos: photoData
     });
+
+    return null;
   };
 
   const { data, isError, isLoading, currentPhoto, searchMethod } = state;
@@ -80,8 +83,9 @@ const WeatherPage = () => {
       css={`
         background: url(${currentPhoto});
         background-repeat: no-repeat;
+        background-attachment: fixed;
         background-size: cover;
-        padding: 32px;
+        padding: 80px;
         margin: 0 auto;
       `}
     >
@@ -97,8 +101,9 @@ const WeatherPage = () => {
           onFetchWeather={handleFetchCurrentWeather}
           searchMethod={searchMethod}
         />
-        {data && <WeatherStats data={data} />}
-        {isLoading && <Loader />}
+        <Skeleton isLoading={!!isLoading}>
+          {data && <WeatherStats data={data} />}
+        </Skeleton>
         {isError && <div data-testid="error-text">An error occured</div>}
       </Paper>
     </div>

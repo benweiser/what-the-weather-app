@@ -1,11 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Weather Page Component should render a weather page 1`] = `
+.c3.c3 {
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 16px;
+}
+
+.c2 {
+  margin-bottom: 48px;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .c0 {
   background: url();
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
-  padding: 32px;
+  padding: 80px;
   margin: 0 auto;
 }
 
@@ -22,11 +41,13 @@ exports[`Weather Page Component should render a weather page 1`] = `
     <div
       class="MuiPaper-root-1 MuiPaper-elevation1-4 MuiPaper-rounded-2 c1"
     >
-      <div>
+      <div
+        class="c2"
+      >
         <form>
           <div
             aria-label="Select zip, coordinates, or location to search"
-            class="MuiFormGroup-root-28"
+            class="MuiFormGroup-root-28 c3"
             role="radiogroup"
           >
             <label
@@ -139,7 +160,9 @@ exports[`Weather Page Component should render a weather page 1`] = `
               </span>
             </label>
           </div>
-          <div>
+          <div
+            class="c4"
+          >
             <div
               aria-label="Enter a city name"
               class="MuiFormControl-root-91 css-1bvmw1t"
@@ -172,7 +195,7 @@ exports[`Weather Page Component should render a weather page 1`] = `
               <span
                 class="MuiButton-label-121"
               >
-                Get Weather
+                Get
               </span>
               <span
                 class="MuiTouchRipple-root-59"
@@ -181,6 +204,7 @@ exports[`Weather Page Component should render a weather page 1`] = `
           </div>
         </form>
       </div>
+      <div />
     </div>
   </div>
 </div>

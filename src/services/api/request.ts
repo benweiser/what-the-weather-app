@@ -32,6 +32,8 @@ export const fetchData = async (
   } catch (e) {
     console.error('Could not fetchData', e);
   }
+
+  return;
 };
 
 /**
@@ -63,4 +65,6 @@ export const fetchCachedData = async (
     sessionStorage.setItem(cacheId, JSON.stringify(response));
     return response;
   }
+
+  return;
 };
